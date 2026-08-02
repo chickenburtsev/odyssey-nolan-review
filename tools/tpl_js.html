@@ -321,7 +321,11 @@ if(TOUCH){
     else $$('.pick',ep).forEach(function(b){
       b.addEventListener('click',function(){ settle(+b.dataset.c,true); });
     });
-    if(innerWidth<820) ep.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
+    // на десктопе подсказка внизу менялась молча: пользователь тыкал в точку и не видел,
+    // что справка под картой обновилась. Подводим панель к экрану на любой ширине.
+    var r=ep.getBoundingClientRect();
+    if(r.top<0 || r.bottom>innerHeight)
+      ep.scrollIntoView({behavior:RM?'auto':'smooth',block:innerWidth<820?'nearest':'end'});
   }
   // самопрорисовка маршрута
   var r=$('#route'), wrap=$('.map-wrap');
@@ -538,44 +542,45 @@ if(TOUCH){
   var cv=$('#grainCv'); if(!cv) return;
   var ctx=cv.getContext('2d',{alpha:false});
   var range=$('#zoomR'), val=$('#zoomV');
-  // холст был жёстко 1200×520 при любом экране: на телефоне это впятеро больше пикселей, чем видно
-  var SW=1200, SH=520, W=SW, H=SH, HALF=W/2, RATIO=1;
+  // «Истина» — ОДНА панель, а не весь холст: обе половины показывают один и тот же кадр,
+  // левая через жёсткую сетку, правая через случайные кристаллы. Раньше слева и справа
+  // были разные куски изображения, и сравнивать было нечего.
+  var TW=600, TH=520;                     // размер панели-истины
+  var W=TW*2, H=TH, HALF=TW, RATIO=1;     // размер холста; RATIO = истина/холст
   function fit(){
-    var disp=Math.round(cv.getBoundingClientRect().width)||SW;
-    var w=clamp(Math.round(disp*Math.min(devicePixelRatio||1,2)), 420, SW);
+    var disp=Math.round(cv.getBoundingClientRect().width)||TW*2;
+    var w=clamp(Math.round(disp*Math.min(devicePixelRatio||1,2)), 420, TW*2);
     w=Math.round(w/2)*2;
     if(w===W) return false;
-    W=w; H=Math.round(w*SH/SW); HALF=W/2; RATIO=SW/W;
+    W=w; H=Math.round(w*TH/(TW*2)); HALF=W/2; RATIO=TW/HALF;
     cv.width=W; cv.height=H; return true;
   }
 
-  /* «истина»: то, что на самом деле было перед объективом */
-  var src=document.createElement('canvas'); src.width=SW; src.height=SH;
+  /* что было перед объективом: кривая, диагональ, тонкая сетка линий и мелкий текст */
+  var src=document.createElement('canvas'); src.width=TW; src.height=TH;
   var s=src.getContext('2d');
   (function drawTruth(){
-    s.fillStyle='#0a0f18'; s.fillRect(0,0,SW,SH);
-    // мягкий свет сверху
-    var g=s.createLinearGradient(0,0,0,SH); g.addColorStop(0,'#2a3446'); g.addColorStop(1,'#080c14');
-    s.fillStyle=g; s.fillRect(0,0,SW,SH);
-    // диагональ — на ней видны ступеньки у сетки
-    s.save(); s.translate(SW/2,SH/2); s.rotate(-.36);
-    s.fillStyle='#e8e2d8'; s.fillRect(-SW,-14,SW*2,28); s.restore();
-    // круг — кривая, которую сетка рвёт на пикселы
-    s.beginPath(); s.arc(SW*.26,SH*.32,86,0,6.29); s.fillStyle='#c8703f'; s.fill();
+    var g=s.createLinearGradient(0,0,0,TH); g.addColorStop(0,'#2a3446'); g.addColorStop(1,'#080c14');
+    s.fillStyle=g; s.fillRect(0,0,TW,TH);
+    // диагональ — на ней у сетки видны ступеньки
+    s.save(); s.translate(TW*.5,TH*.52); s.rotate(-.38);
+    s.fillStyle='#e8e2d8'; s.fillRect(-TW,-13,TW*2,26); s.restore();
+    // круг — кривая, которую решётка рвёт на пикселы
+    s.beginPath(); s.arc(TW*.30,TH*.28,74,0,6.29); s.fillStyle='#c8703f'; s.fill();
     // сходящиеся тонкие линии — источник муара на решётке
-    for(var i=0;i<70;i++){
-      var x=SW*.62+i*7.4, w=Math.max(.6, 5.2-i*.062);
-      s.fillStyle='rgba(240,235,226,.9)'; s.fillRect(x,SH*.52,w,SH*.44);
+    for(var i=0;i<34;i++){
+      var x=TW*.60+i*6.6, w=Math.max(.6, 4.6-i*.11);
+      s.fillStyle='rgba(240,235,226,.92)'; s.fillRect(x,TH*.60,w,TH*.36);
     }
     // мелкий текст-образец
     s.fillStyle='#f0ebe2'; s.font='600 30px Manrope, sans-serif';
-    s.fillText('ΞΕΝΙΑ', SW*.06, SH*.86);
+    s.fillText('ΞΕΝΙΑ', TW*.07, TH*.90);
   })();
-  var truth=s.getImageData(0,0,SW,SH).data;
-  function at(x,y){ // координаты холста → координаты «истины»
+  var truth=s.getImageData(0,0,TW,TH).data;
+  function at(x,y){ // координаты внутри панели → координаты «истины»
     x=(x*RATIO)|0; y=(y*RATIO)|0;
-    if(x<0)x=0; if(y<0)y=0; if(x>=SW)x=SW-1; if(y>=SH)y=SH-1;
-    var i=(y*SW+x)*4; return [truth[i],truth[i+1],truth[i+2]];
+    if(x<0)x=0; if(y<0)y=0; if(x>=TW)x=TW-1; if(y>=TH)y=TH-1;
+    var i=(y*TW+x)*4; return [truth[i],truth[i+1],truth[i+2]];
   }
 
   var cell=6, seed=1;
@@ -595,24 +600,22 @@ if(TOUCH){
   var GRAIN_CAP=9000; // без потолка при ×1 выходило больше 50 000 дуг на кадр
   function render(){
     ctx.drawImage(grid,0,0);
-    /* ПРАВО: случайные кристаллы */
+    /* ПРАВО: тот же кадр, но случайными кристаллами */
     var area=HALF*H, n=Math.min(Math.round(area/(cell*cell)*2.6), GRAIN_CAP);
     var r=seed;
     function rnd(){ r=(r*1664525+1013904223)%4294967296; return r/4294967296; }
     ctx.globalAlpha=1;
-    // тёмная подложка = «неэкспонированная» эмульсия
-    ctx.fillStyle='#070b12'; ctx.fillRect(HALF,0,HALF,H);
-    var scale=Math.max(1, Math.sqrt(area/(cell*cell)*2.6/GRAIN_CAP)); // потолок компенсируем размером зерна
+    ctx.fillStyle='#070b12'; ctx.fillRect(HALF,0,HALF,H);   // «неэкспонированная» эмульсия
+    var scale=Math.max(1, Math.sqrt(area/(cell*cell)*2.6/GRAIN_CAP));
     for(var k=0;k<n;k++){
-      var gx=HALF+rnd()*HALF, gy=rnd()*H;
-      var c2=at(gx,gy);
+      var lx=rnd()*HALF, gy=rnd()*H;      // lx — координата внутри панели, та же система, что слева
+      var c2=at(lx,gy);
       var lum=(c2[0]*.299+c2[1]*.587+c2[2]*.114)/255;
-      if(rnd()>lum*1.06) continue;                 // плотность зёрен = яркость
-      var rad=cell*(.30+rnd()*.42)*scale;          // кристаллы разного размера
+      if(rnd()>lum*1.06) continue;        // плотность зёрен = яркость
+      var rad=cell*(.30+rnd()*.42)*scale;
       ctx.fillStyle='rgb('+c2[0]+','+c2[1]+','+c2[2]+')';
-      ctx.beginPath(); ctx.arc(gx,gy,rad,0,6.29); ctx.fill();
+      ctx.beginPath(); ctx.arc(HALF+lx,gy,rad,0,6.29); ctx.fill();
     }
-    /* линия раздела */
     ctx.fillStyle='rgba(240,235,226,.22)'; ctx.fillRect(HALF-1,0,2,H);
   }
 

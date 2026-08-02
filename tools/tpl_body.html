@@ -40,7 +40,6 @@
   <div class="scroll-cue"><span>{{hero_scroll}}</span><i></i></div>
 </section>
 
-<p class="note rv">{{note1}}</p>
 
 <!-- ═══════════ АКТ I ═══════════ -->
 <section id="act1" class="act" style="padding-bottom:0">
@@ -123,25 +122,9 @@
   </div>
 </section>
 
-<section class="scene" id="sc2" data-still="{{root}}assets/still-storm.jpg" style="height:170svh">
-  <div class="stage">
-    <video id="scrub2" data-src="{{root}}assets/scrub-storm.mp4" muted playsinline preload="none" aria-hidden="true"></video>
-    <div class="grade"></div>
-    <div class="bars t"></div><div class="bars b"></div>
-    <div class="cap"><p data-i="0" class="on">{{a2_thesis}}</p></div>
-  </div>
-</section>
 
 <section class="act" style="padding-top:var(--s6)">
-  <div class="col"><p>{{a2_p1}}</p></div>
-
-  <div class="fact rv">
-    <div class="txt"><p class="lab">{{fact_label}}</p><h3 class="serif">{{fact2_h}}</h3><p>{{fact2_p}}</p></div>
-    <figure><img src="{{root}}assets/still-storm.jpg" alt="" loading="lazy" decoding="async">
-      <figcaption>{{still_credit}}</figcaption></figure>
-  </div>
-
-  <div class="col"><p>{{a2_p2}}</p></div>
+  <div class="col"><p>{{a2_p1}}</p><p>{{a2_p2}}</p></div>
 
   <div class="map-wrap rv">
     <svg id="seamap" viewBox="0 0 1000 560" role="group" aria-label="{{map_intro_h}}">
@@ -184,9 +167,9 @@
     <div class="col" style="margin-top:var(--s4);text-align:left"><p id="nameBody" style="opacity:0;transition:opacity .9s">{{name_p}}</p></div>
   </div>
 
-  <figure class="bleed rv" data-img="{{root}}assets/still-scylla.jpg">
-    <div class="ph"></div><div class="shade"></div>
-    <figcaption><div class="inner"><span>{{scylla_h}}</span><span class="cr">{{img_credit}}</span></div></figcaption>
+  <figure class="fig-mid rv" style="max-width:560px">
+    <img src="{{root}}assets/still-stacks.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>{{scylla_sub}}</span><span class="cr">{{still_credit}}</span></figcaption>
   </figure>
 
   <div class="col">
