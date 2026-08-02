@@ -1,0 +1,395 @@
+</head>
+<body>
+<div id="grain" aria-hidden="true"></div>
+<div id="flash" aria-hidden="true"></div>
+<div id="boot" aria-hidden="true"><p class="w">ΞΕΝΙΑ</p></div>
+<div id="bar"></div>
+
+<header>
+  <a class="brand" href="#hero">{{hero_t1}} <i>{{hero_t2}}</i></a>
+  <nav class="hnav">
+    <a class="lnk" href="#act1">{{nav_act1}}</a>
+    <a class="lnk" href="#act2">{{nav_act2}}</a>
+    <a class="lnk" href="#imax">{{nav_imax}}</a>
+    <a class="lnk" href="#act3">{{nav_act3}}</a>
+    <a class="lnk" href="#play">{{nav_play}}</a>
+    <button class="chip" id="sndBtn" aria-pressed="false">♪ <span>{{sound_off}}</span></button>
+    <button class="chip" id="shareBtn">{{share}}</button>
+    <a class="chip" href="{{other_href}}" hreflang="{{other_lang}}">{{other_lang_label}}</a>
+  </nav>
+</header>
+
+<div id="hud" aria-live="polite">
+  <svg viewBox="0 0 30 30" aria-hidden="true"><g stroke="#b8912f" stroke-width="1.7" fill="none" stroke-linecap="round">
+    <path d="M15 5 v19 M7 24 h16"/><path id="beam" d="M4 9 H26"/>
+    <circle id="pL" cx="4" cy="9" r="3"/><circle id="pR" cx="26" cy="9" r="3"/></g></svg>
+  <span><span class="k" id="hudOk">0</span> / <span class="b" id="hudNo">0</span></span>
+</div>
+
+<!-- ═══════════ ГЕРОЙ ═══════════ -->
+<section id="hero">
+  <div class="bg"><canvas id="sea" aria-hidden="true"></canvas>
+    <video id="heroV" data-src="{{root}}assets/hero-loop.mp4" muted loop playsinline autoplay preload="none" aria-hidden="true"></video></div>
+  <div class="veil"></div>
+  <div class="in-col">
+    <p class="eyebrow">{{hero_kicker}}</p>
+    <h1>{{hero_t1}}<span class="l2">{{hero_t2}}</span></h1>
+    <p class="sub">{{hero_sub}}</p>
+    <div class="facts"><span>{{hero_f1}}</span><span>{{hero_f2}}</span><span>{{hero_f3}}</span></div>
+  </div>
+  <div class="scroll-cue"><span>{{hero_scroll}}</span><i></i></div>
+</section>
+
+<p class="note rv">{{note1}}</p>
+
+<!-- ═══════════ АКТ I ═══════════ -->
+<section id="act1" class="act" style="padding-bottom:0">
+  <div class="act-head">
+    <p class="eyebrow rv">{{a1_label}}</p>
+    <h2 class="rv">{{a1_h}}<span class="sub">{{a1_sub}}</span></h2>
+    <p class="act-thesis rv d1">{{a1_thesis}}</p>
+  </div>
+</section>
+
+<!-- киносцена: конь, ведомый прокруткой -->
+<section class="scene" id="sc1" data-still="{{root}}assets/still-horse.jpg" style="height:340svh">
+  <div class="stage">
+    <video id="scrub1" data-src="{{root}}assets/scrub-horse.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+    <div class="grade"></div>
+    <div class="bars t"></div><div class="bars b"></div>
+    <p class="hint">{{scrub_hint}}</p>
+    <div class="cap">
+      <p data-i="0" class="on">{{scene1_c1}}</p>
+      <p data-i="1">{{scene1_c2}}</p>
+      <p data-i="2">{{scene1_c3}}</p>
+      <p data-i="3">{{scene1_c4}}<small>{{scene1_src4}}</small></p>
+    </div>
+  </div>
+</section>
+
+<section class="act" style="padding-top:var(--s6)">
+  <div class="col"><p>{{a1_p1}}</p><p>{{a1_p2}}</p></div>
+
+  <figure class="bleed wide-cine rv" data-img="{{root}}assets/still-drag.jpg">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{cap_drag}}</span><span class="cr">{{still_credit}}</span></div></figcaption>
+  </figure>
+
+  <figure class="bleed rv" data-img="{{root}}assets/still-troy.jpg">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{a1_h}}</span><span class="cr">{{still_credit}}</span></div></figcaption>
+  </figure>
+
+  <div class="col"><p>{{a1_p3}}</p><p>{{a1_p4}}</p></div>
+
+  <figure class="fig-mid rv" style="max-width:620px">
+    <img src="{{root}}assets/still-sack.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>{{cap_sack}}</span><span class="cr">{{still_credit}}</span></figcaption>
+  </figure>
+
+  <figure class="bleed tall rv" data-img="{{root}}assets/still-marble.jpg">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{a1_sub}}</span><span class="cr">{{still_credit}}</span></div></figcaption>
+  </figure>
+
+  <figure class="bleed rv" data-vid="{{root}}assets/clip-troy.mp4">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{a1_h}}</span><span class="cr">{{clip_credit}}</span></div></figcaption>
+  </figure>
+
+  <blockquote class="rv"><p>“{{q1}}”</p><cite>{{q1_src}}</cite></blockquote>
+
+  <figure class="bleed rv" data-img="{{root}}assets/still-threshold.jpg">
+    <div class="ph"></div>
+    <div class="shade"></div>
+    <figcaption><div class="inner"><span>{{def_translit}}</span><span class="cr">{{img_credit}}</span></div></figcaption>
+  </figure>
+
+  <div class="def rv">
+    <div><p class="word">{{def_word}}</p><p class="tr">{{def_translit}}</p></div>
+    <div class="body"><p>{{def_text}}</p>
+      <ul><li>{{def_l1}}</li><li>{{def_l2}}</li><li>{{def_l3}}</li><li>{{def_l4}}</li></ul></div>
+  </div>
+</section>
+
+<!-- ═══════════ АКТ II ═══════════ -->
+<section id="act2" class="act" style="padding-bottom:0">
+  <div class="act-head">
+    <p class="eyebrow rv">{{a2_label}}</p>
+    <h2 class="rv">{{a2_h}}<span class="sub">{{a2_sub}}</span></h2>
+    <p class="act-thesis rv d1">{{a2_thesis}}</p>
+  </div>
+</section>
+
+<section class="scene" id="sc2" data-still="{{root}}assets/still-storm.jpg" style="height:170svh">
+  <div class="stage">
+    <video id="scrub2" data-src="{{root}}assets/scrub-storm.mp4" muted playsinline preload="none" aria-hidden="true"></video>
+    <div class="grade"></div>
+    <div class="bars t"></div><div class="bars b"></div>
+    <div class="cap"><p data-i="0" class="on">{{a2_thesis}}</p></div>
+  </div>
+</section>
+
+<section class="act" style="padding-top:var(--s6)">
+  <div class="col"><p>{{a2_p1}}</p></div>
+
+  <div class="fact rv">
+    <div class="txt"><p class="lab">{{fact_label}}</p><h3 class="serif">{{fact2_h}}</h3><p>{{fact2_p}}</p></div>
+    <figure><img src="{{root}}assets/still-bowship.jpg" alt="" loading="lazy" decoding="async">
+      <figcaption>{{still_credit}}</figcaption></figure>
+  </div>
+
+  <div class="col"><p>{{a2_p2}}</p></div>
+
+  <div class="map-wrap rv">
+    <svg id="seamap" viewBox="0 0 1000 560" role="group" aria-label="{{map_intro_h}}">
+      {{land}}
+      {{sealabels}}
+      <g transform="translate(72 496)" stroke="#b8912f" fill="none" stroke-width="1.2" opacity=".5">
+        <circle r="22"/><circle r="3"/><path d="M0 -22 V-34 M0 22 V34 M-22 0 H-34 M22 0 H34"/><path d="M0 -34 l-4 7 M0 -34 l4 7"/>
+      </g>
+      <path id="route" d="{{route_d}}"/>
+      <g id="pts"></g>
+      <g id="ship"><g transform="translate(-11,-9)">
+        <path d="M2 12 L20 12 L17 17 L5 17 Z" fill="#c8703f" stroke="#f0ebe2" stroke-width=".9"/>
+        <path d="M11 2 L11 10 L3 10 Z" fill="#f0ebe2"/><line x1="11" y1="12" x2="11" y2="1" stroke="#b8912f" stroke-width="1.3"/>
+      </g><circle r="16" fill="none" stroke="rgba(200,112,63,.45)" stroke-width="1"/></g>
+    </svg>
+    <div class="map-nav" id="mapNav" role="group" aria-label="{{map_intro_h}}"></div>
+    <div class="ep" id="ep" aria-live="polite">
+      <p class="role" id="mapHint">{{map_hint}}</p>
+      <h3>{{map_intro_h}}</h3><p>{{map_intro_p}}</p>
+    </div>
+  </div>
+
+  <figure class="bleed tall rv" data-img="{{root}}assets/still-cyclops.jpg" id="caveFig">
+    <div class="ph torch"><div class="mask"></div><div class="flame"></div><p class="lab">{{torch_hint}}</p></div>
+    <div class="shade"></div>
+    <figcaption><div class="inner"><span>{{poly_h}}</span><span class="cr">{{still_credit}}</span></div></figcaption>
+  </figure>
+
+  <div class="col">
+    <h3 class="serif" style="font-size:clamp(30px,4.6vw,48px);margin-bottom:var(--s3)">{{poly_h}} <em style="color:var(--accent);font-style:italic;font-size:.62em">— {{poly_sub}}</em></h3>
+    <p>{{poly_p1}}</p><p>{{poly_p2}}</p>
+  </div>
+  <div class="aside rv"><h4>{{poly_note_h}}</h4><p>{{poly_note}}</p></div>
+
+  <div id="curse" class="rv">
+    <p class="eyebrow">{{name_label}}</p>
+    <p id="nameOut" class="serif">ΟΥΤΙΣ</p>
+    <p id="nameSub">{{name_before}}</p>
+    <button class="btn" id="nameBtn">{{name_btn}}</button>
+    <div class="col" style="margin-top:var(--s4);text-align:left"><p id="nameBody" style="opacity:0;transition:opacity .9s">{{name_p}}</p></div>
+  </div>
+
+  <figure class="bleed rv" data-img="{{root}}assets/still-scylla.jpg">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{scylla_h}}</span><span class="cr">{{img_credit}}</span></div></figcaption>
+  </figure>
+
+  <figure class="fig-mid rv" style="max-width:560px">
+    <img src="{{root}}assets/still-stacks.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>{{scylla_sub}}</span><span class="cr">{{still_credit}}</span></figcaption>
+  </figure>
+
+  <div class="col">
+    <h3 class="serif" style="font-size:clamp(30px,4.6vw,48px);margin-bottom:var(--s3)">{{scylla_h}} <em style="color:var(--accent);font-style:italic;font-size:.62em">— {{scylla_sub}}</em></h3>
+    <p>{{scylla_p1}}</p><p>{{scylla_p2}}</p>
+  </div>
+</section>
+
+<!-- ═══════════ ОТСТУПЛЕНИЕ: IMAX ═══════════ -->
+<section id="imax" class="act">
+  <div class="act-head">
+    <p class="eyebrow rv">{{imax_label}}</p>
+    <h2 class="rv">{{imax_h}}<span class="sub">{{imax_sub}}</span></h2>
+    <p class="act-thesis rv d1">{{imax_lead}}</p>
+  </div>
+
+  <div class="col"><p>{{imax_p1}}</p></div>
+
+  <figure class="fig-mid rv">
+    <img src="{{root}}assets/still-imaxset.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>{{cap_imaxset}}</span><span class="cr">{{still_credit}}</span></figcaption>
+  </figure>
+
+  <div class="ig rv">
+    <h3 class="serif">{{ig_area_h}}</h3>
+    <svg id="frameCmp" viewBox="0 0 1000 300" role="img" aria-label="{{ig_area_h}}">
+      <rect x="40" y="112" width="97" height="70" fill="none" stroke="#4f96cf" stroke-width="2"/>
+      <text class="fr-lab" x="40" y="100">{{ig_area_35}}</text>
+      <text class="fr-num" x="40" y="202">352 mm²</text>
+      <rect x="240" y="42" width="307" height="214" fill="rgba(200,112,63,.07)" stroke="#c8703f" stroke-width="2"/>
+      <text class="fr-lab hi" x="240" y="30">{{ig_area_imax}}</text>
+      <text class="fr-num" x="240" y="276">3376 mm²</text>
+      <g stroke="rgba(184,145,47,.55)" stroke-width="1" stroke-dasharray="3 4">
+        <line x1="240" y1="42" x2="240" y2="256"/><line x1="547" y1="42" x2="547" y2="256"/>
+      </g>
+      <g id="perfs"></g>
+      <text class="fr-lab hi" x="620" y="152" font-size="54" font-family="Cormorant Garamond, serif">×9,6</text>
+    </svg>
+    <p class="note">{{ig_area_note}}</p>
+  </div>
+
+  <div class="ig rv">
+    <h3 class="serif">{{ig_res_h}}</h3>
+    <div class="res" id="resLadder">
+      <div class="res-row"><span class="rn">4K</span><span class="rt d" style="width:4%"><span>8,8 МП</span></span></div>
+      <div class="res-row"><span class="rn">8K</span><span class="rt d" style="width:15%"><span>33 МП</span></span></div>
+      <div class="res-row"><span class="rn">IMAX 12K</span><span class="rt f" style="width:46%"><span>≈105 МП</span></span></div>
+      <div class="res-row"><span class="rn">IMAX 18K</span><span class="rt f" style="width:100%"><span>≈237 МП</span></span></div>
+    </div>
+    <p class="note">{{ig_res_note}}</p>
+  </div>
+
+  <div class="col"><p>{{imax_p2}}</p></div>
+
+  <div class="fact solo rv">
+    <div class="txt"><p class="lab">{{fact_label}}</p><h3 class="serif">{{fact1_h}}</h3><p>{{fact1_p}}</p></div>
+  </div>
+
+  <div class="wide rv">
+    <div class="nums">
+      <div class="n"><p class="v">15</p><p class="c">{{ig_n1}}</p></div>
+      <div class="n"><p class="v">1,43:1</p><p class="c">{{ig_n2}}</p></div>
+      <div class="n"><p class="v">~100</p><p class="c">{{ig_n3}}</p></div>
+      <div class="n"><p class="v">600+</p><p class="c">{{ig_n4}}</p></div>
+    </div>
+  </div>
+
+  <div class="act-head" style="margin-top:var(--s7)">
+    <h2 class="rv" style="font-size:clamp(34px,6vw,72px)">{{grain_h}}</h2>
+    <p class="act-thesis rv d1">{{grain_lead}}</p>
+  </div>
+
+  <div class="lab-wrap rv">
+    <canvas id="grainCv" width="1200" height="520" aria-label="{{grain_h}}"></canvas>
+    <div class="lab-legend"><span class="l">{{grain_left}}</span><span class="r">{{grain_right}}</span></div>
+    <div class="zoom">
+      <label for="zoomR">{{grain_zoom}}</label>
+      <input id="zoomR" type="range" min="1" max="10" step="0.1" value="3" aria-label="{{grain_zoom}}">
+      <span class="val" id="zoomV">×3</span>
+    </div>
+    <p class="note" style="font-family:var(--sans);font-style:normal;font-size:13px;color:var(--paper-4);margin-top:var(--s2)">{{grain_ui}}</p>
+  </div>
+
+  <div class="col" style="margin-top:var(--s5)"><p>{{grain_p1}}</p><p>{{grain_p2}}</p><p>{{grain_p3}}</p></div>
+
+  <figure class="bleed rv" data-img="{{root}}assets/still-nolan.jpg">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{cap_nolan}}</span><span class="cr">{{still_credit}}</span></div></figcaption>
+  </figure>
+</section>
+
+<!-- ═══════════ АКТ III ═══════════ -->
+<section id="act3" class="act">
+  <div class="act-head">
+    <p class="eyebrow rv">{{a3_label}}</p>
+    <h2 class="rv">{{a3_h}}<span class="sub">{{a3_sub}}</span></h2>
+    <p class="act-thesis rv d1">{{a3_thesis}}</p>
+  </div>
+  <div class="col"><p>{{a3_p1}}</p><p>{{a3_p2}}</p><p>{{a3_p3}}</p></div>
+
+  <figure class="bleed tall rv" data-img="{{root}}assets/still-penelope.jpg">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{a3_sub}}</span><span class="cr">{{img_credit}}</span></div></figcaption>
+  </figure>
+
+  <figure class="bleed rv" data-vid="{{root}}assets/clip-bow.mp4">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{a3_h}}</span><span class="cr">{{clip_credit}}</span></div></figcaption>
+  </figure>
+
+  <blockquote class="rv"><p>“{{q2}}”</p><cite>{{q2_src}}</cite></blockquote>
+  <div class="col"><p>{{a3_p4}}</p></div>
+
+  <figure class="fig-mid rv">
+    <img src="{{root}}assets/still-ramparts.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>{{cap_ramparts}}</span><span class="cr">{{still_credit}}</span></figcaption>
+  </figure>
+
+  <div class="col"><p>{{a3_p5}}</p></div>
+  <figure class="bleed tall rv" data-img="{{root}}assets/still-face.jpg">
+    <div class="ph"></div><div class="shade"></div>
+    <figcaption><div class="inner"><span>{{cap_face}}</span><span class="cr">{{still_credit}}</span></div></figcaption>
+  </figure>
+
+  <p class="openq rv"><em>{{open_q}}</em><span class="ans">{{open_a}}</span></p>
+</section>
+
+<!-- ═══════════ ИНТЕРАКТИВЫ ═══════════ -->
+<section id="play" class="play">
+  <div class="play-head">
+    <p class="eyebrow rv">{{play_label}}</p>
+    <h2 class="rv">{{x_h}}</h2>
+    <p class="sub rv d1">{{x_sub}}</p>
+  </div>
+  <div class="panel">
+    <div id="xQ"><p class="step" id="xStep"></p><p class="qtext" id="xText"></p><div class="opts" id="xOpts"></div><p class="why" id="xWhy"></p></div>
+    <div id="xEnd" class="verdict" hidden></div>
+  </div>
+</section>
+
+<section class="play" style="padding-top:var(--s6)">
+  <div class="play-head"><h2 class="rv">{{tl_h}}</h2><p class="sub rv d1">{{tl_sub}}</p></div>
+  <div class="panel">
+    <div class="tlwrap">
+      <svg id="tlSvg" viewBox="0 0 1000 400" role="group" aria-label="{{tl_h}}"></svg>
+    </div>
+    <p id="tlPick">{{tl_hint}}</p>
+    <div class="tlnotes">
+      <div class="c"><h4>{{tl_m1}}</h4><p>{{tl_n1}}</p></div>
+      <div class="c"><h4>{{tl_m2}}</h4><p>{{tl_n2}}</p></div>
+      <div class="c"><h4>{{tl_m3}}</h4><p>{{tl_n3}}</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="play" style="padding-top:var(--s6)">
+  <div class="play-head"><h2 class="rv">{{bo_h}}</h2><p class="sub rv d1">{{bo_sub}}</p></div>
+  <div class="panel">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:var(--s3);font-size:13px;color:var(--paper-2)">
+      <span style="display:flex;align-items:center;gap:8px;font-weight:650"><i style="width:13px;height:13px;border-radius:3px;background:var(--sea);display:inline-block"></i>{{bo_budget}}</span>
+      <span style="display:flex;align-items:center;gap:8px;font-weight:650"><i style="width:13px;height:13px;border-radius:3px;background:var(--accent);display:inline-block"></i>{{bo_gross}}</span>
+    </div>
+    <div id="boChart" role="group" aria-label="{{bo_h}}"></div>
+    <p style="margin-top:var(--s3);font-size:13.5px;color:var(--paper-4);max-width:70ch">{{bo_note}}</p>
+    <details><summary>{{bo_table}}</summary><div id="boTable"></div></details>
+  </div>
+</section>
+
+<section class="play" style="padding-top:var(--s6)">
+  <div class="play-head"><h2 class="rv">{{qz_h}}</h2><p class="sub rv d1">{{qz_sub}}</p></div>
+  <div class="panel">
+    <div id="qzQ">
+      <p class="step"><span id="qzStep"></span> · <span class="score" id="qzScore"></span></p>
+      <p class="qtext" id="qzText"></p>
+      <div class="tf"><button class="pick" data-a="homer">{{qz_yes}}</button><button class="pick mute" data-a="not">{{qz_no}}</button></div>
+      <p class="why" id="qzWhy"></p>
+      <div style="margin-top:var(--s3)"><button class="pick mute" id="qzNext" hidden>{{qz_next}} →</button></div>
+    </div>
+    <div id="qzEnd" class="verdict" hidden></div>
+  </div>
+</section>
+
+<!-- ═══════════ ФИНАЛ ═══════════ -->
+<section id="end">
+  <div class="wide"><h2 class="serif rv" style="font-size:clamp(32px,5.4vw,62px)">{{fin_h}}</h2></div>
+  <div class="three">
+    <div class="c rv"><p class="n">α</p><h3>{{fin_1h}}</h3><p>{{fin_1p}}</p></div>
+    <div class="c rv d1"><p class="n">β</p><h3>{{fin_2h}}</h3><p>{{fin_2p}}</p></div>
+    <div class="c rv d2"><p class="n">γ</p><h3>{{fin_3h}}</h3><p>{{fin_3p}}</p></div>
+  </div>
+  <p class="note rv">{{note2}}</p>
+</section>
+
+<section id="src">
+  <div class="wide">
+    <h2 class="serif">{{src_h}}</h2>
+    <p class="intro">{{src_p}}</p>
+    <div class="srcs">{{sources}}</div>
+  </div>
+</section>
+
+<footer><div class="in"><p>{{footer}}</p><p class="serif" style="font-size:15px;white-space:nowrap">ΞΕΝΙΑ · 2026</p></div></footer>
+<div id="boTip" role="tooltip"></div>
