@@ -161,6 +161,9 @@ header.hide{transform:translateY(-120%)}
 .bleed figcaption .cr{color:var(--paper-4)}
 .bleed.tall img{height:clamp(420px,88svh,940px)}
 .bleed.wide-cine img{height:clamp(240px,52svh,600px)}
+/* якорь кадрирования: там, где главное у нижнего или верхнего края, машинный центр срезает его */
+.bleed.anchor-b img{object-position:center bottom}
+.bleed.anchor-t img{object-position:center top}
 
 /* ============ ЦИТАТА ============ */
 blockquote{margin:var(--s6) auto;width:var(--col)}
@@ -575,19 +578,23 @@ footer .in p{max-width:74ch;margin:0}
     <figcaption><div class="inner"><span>The gift hauled to the gate</span><span class="cr">© Universal Pictures / Syncopy · promotional material, quoted for criticism</span></div></figcaption>
   </figure>
 
-  <figure class="bleed rv" data-img="../assets/still-troy.jpg">
-    <div class="ph"></div><div class="shade"></div>
-    <figcaption><div class="inner"><span>The Breach</span><span class="cr">© Universal Pictures / Syncopy · promotional material, quoted for criticism</span></div></figcaption>
+  <div class="col"><p>That is Nolan's turn. The horse is not a witty stratagem but a sacrilege. In this world a gift was a physical handshake between strangers, the only proof that a stranger was not an enemy. The horse turned that proof into a lie. And once gifts can no longer be trusted, nothing at all remains between people.</p></div>
+
+  <figure class="fig-mid rv">
+    <img src="../assets/still-troy.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>A close-up where the epic would put a panorama</span><span class="cr">© Universal Pictures / Syncopy · promotional material, quoted for criticism</span></figcaption>
   </figure>
 
-  <div class="col"><p>That is Nolan's turn. The horse is not a witty stratagem but a sacrilege. In this world a gift was a physical handshake between strangers, the only proof that a stranger was not an enemy. The horse turned that proof into a lie. And once gifts can no longer be trusted, nothing at all remains between people.</p><p>The rhyme with Oppenheimer is structural, not decorative. Trinity is also a triumph of intellect that becomes, at the moment of success, the point of no return — after which the man lives inside the consequences rather than beyond them. The horse is Odysseus's Trinity. The detonation happens in the opening minutes; the remaining two and three-quarter hours are the blast wave, and the first person it reaches is the man who pressed the button.</p></div>
+  <div class="col"><p>The rhyme with Oppenheimer is structural, not decorative. Trinity is also a triumph of intellect that becomes, at the moment of success, the point of no return — after which the man lives inside the consequences rather than beyond them. The horse is Odysseus's Trinity. The detonation happens in the opening minutes; the remaining two and three-quarter hours are the blast wave, and the first person it reaches is the man who pressed the button.</p></div>
 
   <figure class="fig-mid rv" style="max-width:620px">
     <img src="../assets/still-sack.jpg" alt="" loading="lazy" decoding="async">
     <figcaption><span>The night everything was decided</span><span class="cr">© Universal Pictures / Syncopy · promotional material, quoted for criticism</span></figcaption>
   </figure>
 
-  <figure class="bleed tall rv" data-img="../assets/still-marble.jpg">
+  <blockquote class="rv"><p>“Whatever it is, I fear the Greeks, even when they bring gifts.”</p><cite>Laocoön on the horse. Virgil, Aeneid, Book II</cite></blockquote>
+
+  <figure class="bleed anchor-b rv" data-img="../assets/still-marble.jpg">
     <div class="ph"></div><div class="shade"></div>
     <figcaption><div class="inner"><span>A gift that was a weapon</span><span class="cr">© Universal Pictures / Syncopy · promotional material, quoted for criticism</span></div></figcaption>
   </figure>
@@ -597,19 +604,17 @@ footer .in p{max-width:74ch;margin:0}
     <figcaption><div class="inner"><span>The Breach</span><span class="cr">© Universal Pictures / Syncopy · trailer excerpt, quoted for review</span></div></figcaption>
   </figure>
 
-  <blockquote class="rv"><p>“Whatever it is, I fear the Greeks, even when they bring gifts.”</p><cite>Laocoön on the horse. Virgil, Aeneid, Book II</cite></blockquote>
+  <div class="def rv">
+    <div><p class="word">ξενία</p><p class="tr">xenia</p></div>
+    <div class="body"><p>The duty to take a stranger in: wash him, feed him, give him a bed, send him off with a gift — and ask no name until he has eaten. In return the guest must bring the house no harm, and must offer the same welcome if the roles ever reverse. The guarantor is Zeus Xenios, patron of wanderers: the beggar at the door may be a god in rags. Which is why shutting that door is not rudeness but sacrilege.</p>
+      <ul><li>Paris broke xenia — the war began</li><li>The horse broke it again — Troy fell</li><li>Polyphemus breaks it as a host</li><li>The suitors break it as guests</li></ul></div>
+  </div>
 
   <figure class="bleed rv" data-img="../assets/still-threshold.jpg">
     <div class="ph"></div>
     <div class="shade"></div>
     <figcaption><div class="inner"><span>xenia</span><span class="cr">image generated with AI for this piece</span></div></figcaption>
   </figure>
-
-  <div class="def rv">
-    <div><p class="word">ξενία</p><p class="tr">xenia</p></div>
-    <div class="body"><p>The duty to take a stranger in: wash him, feed him, give him a bed, send him off with a gift — and ask no name until he has eaten. In return the guest must bring the house no harm, and must offer the same welcome if the roles ever reverse. The guarantor is Zeus Xenios, patron of wanderers: the beggar at the door may be a god in rags. Which is why shutting that door is not rudeness but sacrilege.</p>
-      <ul><li>Paris broke xenia — the war began</li><li>The horse broke it again — Troy fell</li><li>Polyphemus breaks it as a host</li><li>The suitors break it as guests</li></ul></div>
-  </div>
 </section>
 
 <!-- ═══════════ АКТ II ═══════════ -->
@@ -635,7 +640,7 @@ footer .in p{max-width:74ch;margin:0}
 
   <div class="fact rv">
     <div class="txt"><p class="lab">In passing</p><h3 class="serif">The sea was real</h3><p>Much of the sea work was shot not on a soundstage against a blue screen but in open water and on Mediterranean islands. Nolan's reasoning was simple: water genuinely refuses to cooperate — and nothing conveys better what those voyages cost the people making them.</p></div>
-    <figure><img src="../assets/still-bowship.jpg" alt="" loading="lazy" decoding="async">
+    <figure><img src="../assets/still-storm.jpg" alt="" loading="lazy" decoding="async">
       <figcaption>© Universal Pictures / Syncopy · promotional material, quoted for criticism</figcaption></figure>
   </div>
 
@@ -685,11 +690,6 @@ footer .in p{max-width:74ch;margin:0}
   <figure class="bleed rv" data-img="../assets/still-scylla.jpg">
     <div class="ph"></div><div class="shade"></div>
     <figcaption><div class="inner"><span>Scylla and Charybdis</span><span class="cr">image generated with AI for this piece</span></div></figcaption>
-  </figure>
-
-  <figure class="fig-mid rv" style="max-width:560px">
-    <img src="../assets/still-stacks.jpg" alt="" loading="lazy" decoding="async">
-    <figcaption><span>terror without an address</span><span class="cr">© Universal Pictures / Syncopy · promotional material, quoted for criticism</span></figcaption>
   </figure>
 
   <div class="col">
@@ -790,9 +790,9 @@ footer .in p{max-width:74ch;margin:0}
   </div>
   <div class="col"><p>The structure closes with symmetry. In Act One, guests rode into a city inside a gift and devoured it from within. In Act Three the suitors — guests, formally — have spent years eating Odysseus's house: his herds, his wine, his servants, his wife as a prize. The same crime shot from the other side: xenia inverted not by the host, as with Polyphemus, but by the guest. Pattinson's Antinous isn't a villain; he is a man sincerely convinced that the law of Zeus is for the weak. And Penelope and Telemachus, still receiving strangers in a house being stripped bare, are the only ones still holding it.</p><p>So the killing is staged as ritual rather than carnage: a confined hall, a bow instead of a sword, a beggar becoming a king in front of you. Gregory Nagy reads it the same way: the slaughter of the suitors is less a punishment than a necessary restoration of order. Reviewers note that the film's themes finally acquire force in that last fight. The violence doesn't liberate: it is heavy, and the film withholds clean catharsis.</p><p>But Homer is more honest than the genre, and Nolan follows him. The restored law immediately breeds a new cycle: the families of the dead take up arms, and the blood feud is ready to spin on forever. The epic cuts it off by divine intervention — Athena, on Zeus's order, lays forgetting over the island. Amnesty as the only exit. The ancient poet knew what the twentieth century rediscovered in its own rubble: vengeance has no natural last point; the end has to be imposed.</p></div>
 
-  <figure class="bleed tall rv" data-img="../assets/still-penelope.jpg">
+  <figure class="bleed wide-cine rv" data-img="../assets/still-bowship.jpg">
     <div class="ph"></div><div class="shade"></div>
-    <figcaption><div class="inner"><span>Slaughter as ritual</span><span class="cr">image generated with AI for this piece</span></div></figcaption>
+    <figcaption><div class="inner"><span>Odysseus and the bow</span><span class="cr">© Universal Pictures / Syncopy · promotional material, quoted for criticism</span></div></figcaption>
   </figure>
 
   <figure class="bleed rv" data-vid="../assets/clip-bow.mp4">
