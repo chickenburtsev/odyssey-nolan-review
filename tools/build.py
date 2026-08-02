@@ -143,6 +143,14 @@ self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>
 self.addEventListener('fetch',e=>{
   const r=e.request; if(r.method!=='GET') return;
   if(r.headers.get('range')) return;           // видео отдаём сети
+  // страницы берём из сети и только при её отсутствии из кэша:
+  // иначе после публикации правок вернувшийся читатель видит старую версию
+  if(r.mode==='navigate'){
+    e.respondWith(fetch(r).then(res=>{
+      const cp=res.clone(); caches.open(C).then(c=>c.put(r,cp)); return res;
+    }).catch(()=>caches.match(r).then(hit=>hit||caches.match(/\\/en\\//.test(new URL(r.url).pathname)?'./en/':'./'))));
+    return;
+  }
   e.respondWith(caches.match(r).then(hit=>hit||fetch(r).then(res=>{
     if(res.ok && res.type==='basic' && !/\\.(mp4|webm|mp3)$/i.test(new URL(r.url).pathname)){
       const cp=res.clone(); caches.open(C).then(c=>c.put(r,cp));
