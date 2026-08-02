@@ -388,6 +388,22 @@ body.shake{animation:shake .45s linear}
 #boTip{position:fixed;z-index:80;pointer-events:none;opacity:0;transition:opacity .18s;max-width:260px;
   background:#04070d;border:1px solid var(--line-2);border-radius:10px;padding:12px 15px;font-size:12.5px;line-height:1.5;color:var(--paper-2)}
 #boTip b{color:var(--paper)}
+/* ============ БАННЕР СОГЛАСИЯ ============ */
+#consent{position:fixed;z-index:90;left:50%;transform:translateX(-50%) translateY(120%);
+  bottom:calc(var(--safe-b) + 16px);width:min(100% - 24px,720px);
+  display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;justify-content:space-between;
+  background:rgba(4,7,13,.94);border:1px solid var(--line-2);border-radius:14px;
+  padding:16px 20px;backdrop-filter:blur(10px);opacity:0;
+  transition:transform .45s var(--e),opacity .45s var(--e)}
+#consent.in{transform:translateX(-50%) translateY(0);opacity:1}
+#consent p{margin:0;font-size:13px;line-height:1.55;color:var(--paper-2);flex:1 1 300px}
+#consent .cn-btns{display:flex;gap:10px;flex:0 0 auto}
+#consent .chip{min-height:40px}
+#consent .chip#cnYes{color:var(--accent);border-color:var(--accent)}
+#consent .chip.mute{color:var(--paper-3)}
+@media(max-width:520px){#consent{padding:14px 16px;gap:12px}#consent p{font-size:12.5px}
+  #consent .cn-btns{width:100%}#consent .chip{flex:1;justify-content:center;min-height:44px}}
+
 /* примечание под строкой — тач-замена курсорной подсказки */
 .bo-note{grid-column:1 / -1;display:none;margin:6px 0 2px;padding:11px 13px;border-left:2px solid var(--accent);
   background:rgba(240,235,226,.045);border-radius:0 8px 8px 0;font-size:12.5px;line-height:1.55;color:var(--paper-2);text-align:left}
@@ -907,16 +923,83 @@ footer .in p{max-width:74ch;margin:0}
 
 <footer><div class="in"><p>An independent, non-commercial reading. Not affiliated with Universal Pictures or Syncopy. Images credited as AI-generated were made specifically for this piece; the rest belong to the rights holders and are credited in place. Quotations are limited to what critical analysis requires and are attributed to their sources.</p><p class="serif" style="font-size:15px;white-space:nowrap">ΞΕΝΙΑ · 2026</p></div></footer>
 <div id="boTip" role="tooltip"></div>
+<div id="consent" role="dialog" aria-live="polite" hidden>
+  <p>This page collects anonymous statistics: what gets read, what gets clicked, where people leave. No names, no email, no advertising profiles.</p>
+  <div class="cn-btns"><button class="chip" id="cnYes">Accept</button><button class="chip mute" id="cnNo">Decline</button></div>
+</div>
 <script>
 (function(){
 'use strict';
-var D = {"root": "../", "t": {"sound_on": "Sound on", "sound_off": "Sound off", "share": "Share", "share_done": "Link copied", "desc": "Xenia, the ancient law of hospitality, as the key to Nolan's Odyssey: why the horse is a crime, the wandering a sentence, and the slaughter a trial.", "choice_law_kept": "The law held", "choice_law_broken": "The law was broken", "x_step": "Threshold", "x_of": "of", "x_next": "Next", "x_verdict": "See the verdict", "x_again": "Start over", "x_score": "Result", "bo_budget": "Budget", "bo_gross": "Worldwide", "bo_live": "still running", "qz_stmt": "Statement", "qz_next": "Next", "qz_result": "Result", "qz_again": "Start over", "name_after_sub": "The curse now has an address.", "tl_m1": "Events in chronological order", "tl_m2": "As Homer tells it", "tl_m3": "As Nolan cuts it", "tl_read": "follow the line downward", "map_hint_touch": "Tap a point to see where it is and what is actually there", "tl_hint_touch": "Tap an event to see where it lands in each of the three orderings. The chart scrolls sideways."}, "map": [{"id": "troy", "x": 833, "y": 146, "lx": 0, "ly": -20, "name": "Troy", "role": "The breach", "desc": "The gift rolls through the gate. That night the Greeks cut down a sleeping city — shot as horror, not as triumph.", "place": "Hisarlik, north-west Turkey", "fact": "Heinrich Schliemann excavated the mound in the 1870s and found nine cities stacked one on another. Which layer is Homer’s Troy is still disputed.", "c1": "Hide inside the horse", "c2": "Say it: even war has a limit", "o1k": "bad", "o1": "The city burns. This is where reviewers place the line: we violated all that's ever sacred between people. The sentence is signed; only its length is still unknown.", "o2k": "ok", "o2": "No one in the film says it. Weil explained why: force turns victim and victor alike into things."}, {"id": "lotus", "x": 226, "y": 451, "lx": 0, "ly": -20, "name": "Lotus-eaters", "role": "Hospitality as trap", "desc": "The hosts are flawlessly kind: they offer lotus. Whoever eats forgets home. Xenia without memory stops being xenia.", "place": "Djerba, Tunisia", "fact": "The identification goes back to Herodotus, who wrote that the lotus fruit was as sweet as a date. The usual candidate is the jujube, Ziziphus lotus, which still grows on the island.", "c1": "Taste the lotus", "c2": "Drag your men back to the ship", "o1k": "bad", "o1": "You stay on this shore forever — fed, content and nobody. Forgetting here isn't mercy, it's dissolution.", "o2k": "ok", "o2": "What Odysseus actually does: the weeping crew is tied to the benches. Sometimes a man is brought home against his will."}, {"id": "cyclops", "x": 396, "y": 265, "lx": -14, "ly": 20, "name": "The Cyclops", "role": "The host's exam — and the host fails it", "desc": "Asked for a stranger's due, Polyphemus dines on two guests. Odysseus blinds him and calls himself Nobody. All that's left is to leave quietly.", "place": "Aci Trezza, Sicily", "fact": "Basalt stacks rise from the water offshore — the Faraglioni dei Ciclopi, said to be the rocks the blinded Polyphemus hurled after the ship. Etna’s slopes begin a few kilometres inland; the summit is about twenty-five.", "c1": "Leave as Nobody", "c2": "Shout your name from the deck", "o1k": "ok", "o1": "The curse has nowhere to land. But this is not the choice the hero makes.", "o2k": "bad", "o2": "The name goes to Poseidon with a request attached: let him come home late, broken, alone — and find trouble in his house."}, {"id": "aeolus", "x": 388, "y": 220, "lx": 30, "ly": -16, "name": "Aeolus", "role": "The perfect gift", "desc": "The lord of winds hosts him properly and hands over a parting gift: a bag holding every contrary wind. Ithaca is already in sight.", "place": "The Aeolian Islands", "fact": "They carry his name: antiquity put the island of Aeolus here. The archipelago is volcanic, and the bag of winds may well have grown out of its squalls.", "c1": "Trust the crew", "c2": "Stay awake and guard the bag", "o1k": "bad", "o1": "They open it — there must be gold — and the storm throws the ships back. A gift opened out of greed is a small Trojan horse.", "o2k": "ok", "o2": "He did exactly that, and fell asleep within sight of home. The body is weaker than the will; the law accounts for it."}, {"id": "laestry", "x": 159, "y": 75, "lx": 0, "ly": -20, "name": "Laestrygonians", "role": "Total anti-xenia", "desc": "The scouts are invited into the palace and eaten. The harbour turns out to be a trap: giants smash the ships with boulders.", "place": "Bonifacio, Corsica", "fact": "A narrow inlet between sheer limestone cliffs. Homer’s description of the harbour matches it almost word for word: a slit for an entrance, walls overhead.", "c1": "Moor in the sheltered bay", "c2": "Keep your ship outside", "o1k": "bad", "o1": "One ship of twelve gets out. The heaviest losses of the whole voyage, at the place with the warmest welcome.", "o2k": "ok", "o2": "His ship alone stayed outside. After the Cyclops he knows what a mouth shaped like a door looks like."}, {"id": "circe", "x": 314, "y": 82, "lx": -8, "ly": -20, "name": "Circe", "role": "Hospitality as transformation", "desc": "The hostess feeds her guests and turns them into pigs — bad xenia made literal. Then a year of honest hospitality.", "place": "Monte Circeo, Italy", "fact": "A headland south of Rome that reads as an island from the sea: the low marshy strip in front of it disappears at a distance. Hence \"Circe’s island\".", "c1": "Feast for a year", "c2": "Remember Ithaca", "o1k": "ok", "o1": "The year is a legitimate rest, and she sends him off with directions. A good host lets you go — that's what separates her from a trap.", "o2k": "ok", "o2": "It was the crew who had to do the reminding, not the hero. Comfort is the softest prison on this route."}, {"id": "sirens", "x": 367, "y": 115, "lx": 34, "ly": -8, "name": "The Sirens", "role": "A test by knowledge", "desc": "Homer's Sirens seduce with knowledge, not bodies: they promise to sing of everything, the war at Troy included. For a man carrying that guilt it's worse than beauty.", "place": "Li Galli, near Positano", "fact": "Three islets antiquity assigned to the Sirens. In the twentieth century the dancer Léonide Massine bought them, and later Rudolf Nureyev.", "c1": "Tie yourself to the mast", "c2": "Fill your ears with wax", "o1k": "ok", "o1": "To hear it and be unable to move. Which is close to how cinema itself works: a bound audience being sung its own guilt.", "o2k": "ok", "o2": "The crew survives deaf. Also a strategy — but then there was no point sailing past them."}, {"id": "scylla", "x": 414, "y": 231, "lx": 58, "ly": 10, "name": "Scylla and Charybdis", "role": "A toll with no negotiation", "desc": "The Cyclops could be bargained with: he had a face and a name. Scylla has six blank necks; Charybdis is nothing but a throat.", "place": "The Strait of Messina", "fact": "Charybdis is not invented: tidal currents of two seas collide in the narrows and throw real whirlpools. Locally they are called garofali.", "c1": "Keep to Scylla: lose six", "c2": "Keep to Charybdis: all or nothing", "o1k": "ok", "o1": "A guaranteed price instead of a lottery. Six oarsmen, a bill the captain pays in silence. The adult decision — and no easier to sleep on.", "o2k": "bad", "o2": "The funnel doesn't haggle — it takes the whole ship. Later, clinging to a mast, he meets her anyway, and survives alone."}, {"id": "helios", "x": 401, "y": 250, "lx": 46, "ly": 26, "name": "The cattle of Helios", "role": "The crew's final exam", "desc": "A forbidden island, a sacred herd. A storm pins the ship for a month and the food runs out. The men wait for the captain to sleep.", "place": "Thrinakia — identified with Sicily", "fact": "Sicily’s old name, Trinacria, means \"three-pointed\", and the flag still carries the emblem: three legs radiating from a centre. Ancient readers took Homer’s Thrinakia for the same island.", "c1": "Starve, but don't touch them", "c2": "Slaughter them: the gods will forgive", "o1k": "ok", "o1": "The only way through — and nobody but Odysseus held out.", "o2k": "bad", "o2": "Zeus answers with lightning: the ship in splinters, the crew on the seabed. The sacred stays sacred even when you're starving."}, {"id": "calypso", "x": 360, "y": 339, "lx": 0, "ly": 24, "name": "Calypso", "role": "Hospitality as captivity", "desc": "Seven of the ten years. The goddess offers immortality: perfect conditions and no way out.", "place": "Gozo, Malta", "fact": "A cave above Ramla Bay is shown as Calypso’s. The identification is ancient — Callimachus already linked Gozo to Ogygia — and Ogygia is still used as the island’s poetic name.", "c1": "Stay: eternity and peace", "c2": "Leave: a raft, the sea, a mortal wife", "o1k": "bad", "o1": "Eternity on someone else's island is the lotus for one. Homer is precise: nights with the goddess, days on the shore, staring at water.", "o2k": "ok", "o2": "The choice that defines the whole work: a mortal life at home over immortality as a guest. Zeus sends Hermes to order her to let him go — the law outranks the goddess."}, {"id": "phaeacia", "x": 584, "y": 163, "lx": -10, "ly": -20, "name": "The Phaeacians", "role": "Xenia at its best", "desc": "A naked stranger is washed, clothed, seated at the table — and not asked his name until he's ready. His story at that court fills four of the poem's twenty-four books — and nearly all the famous ones.", "place": "Corfu", "fact": "In Paleokastritsa they point out a rock said to be the Phaeacian ship: Poseidon, enraged, turned to stone the vessel that carried Odysseus home.", "c1": "Give your name at once", "c2": "Wait until they ask", "o1k": "ok", "o1": "Honest, but not how it's done here: table first, name after. The bard sings of Troy, the guest weeps, and only then does the king ask who he is.", "o2k": "ok", "o2": "Which is what happens. A properly received guest becomes the storyteller; they sail him home asleep and take no payment."}, {"id": "ithaca", "x": 615, "y": 223, "lx": 30, "ly": 14, "name": "Ithaca", "role": "The mirror breach", "desc": "A house where the law is inverted again: guests eat the estate and court the lady of the house. Odysseus walks in as a beggar.", "place": "Ithaca, the Ionian Islands", "fact": "The matching name does not settle it: some scholars place Homer’s Ithaca on neighbouring Cephalonia, and Homer’s description only half fits either.", "c1": "Reveal yourself now", "c2": "Enter as Nobody — again", "o1k": "bad", "o1": "Against a hundred armed men that's suicide. Order isn't restored by a gesture but by procedure — a bow only the owner can string.", "o2k": "ok", "o2": "The symmetry closes: he began as Nobody in a cave and ends as Nobody at his own hearth. Only by crossing the house as a stranger does he see who kept the law: a wife, a son, a swineherd and an old dog."}], "xenia": [{"q": "Night, storm. A stranger knocks — soaked, empty-handed, giving no name.", "o": [{"s": 2, "t": "Let him in, seat him by the fire, feed him. Questions later.", "e": "Canonical. Even Eumaeus the swineherd does this — and his guest turns out to be a king. Or a god: the whole system rests on that."}, {"s": 1, "t": "Ask through the door who he is first.", "e": "Humanly sensible, legally a failure: questions before the meal insult the guest."}, {"s": 0, "t": "Don't open. These are unsettled times.", "e": "Precisely the Cyclops's reasoning — and the poem shows where it leaves the owner of the cave."}]}, {"q": "Your guest is into his seventh year. It's time he went home, but you like having him. You are Calypso.", "o": [{"s": 2, "t": "Help him build a raft, provision it, teach him the stars.", "e": "Which is how it ends: Zeus sends Hermes to remind her that holding a guest is a breach."}, {"s": 0, "t": "Keep him. Offer immortality.", "e": "Hospitality without the right to leave is captivity with a good view."}, {"s": 1, "t": "Let him go, but sulk and offer nothing.", "e": "Half the job. Xenia isn't 'not obstructing' — it's outfitting the journey. The parting gift is part of the law."}]}, {"q": "A recent enemy sends a magnificent gift — so generous it's uncomfortable.", "o": [{"s": 1, "t": "Accept with honour: refusing a gift is an insult.", "e": "Formally impeccable. One horse was accepted with honour too — ask the Trojans how that went."}, {"s": 2, "t": "Accept it, but look inside first.", "e": "The wisdom of a survivor. Trust underwrites xenia, but after Troy you read the law carefully."}, {"s": 0, "t": "Refuse it publicly and mock it.", "e": "Now you're the offender: a refused gift is a slap. Ten-year wars have grown from those."}]}, {"q": "You're a guest in a poor house. Your host shares his last bread and gives you his only bed.", "o": [{"s": 2, "t": "Accept gratefully and remember the debt.", "e": "The heart of xenia is reciprocity deferred. Eumaeus shares bread with a beggar and ends up at a king's table."}, {"s": 0, "t": "Refuse: it's wrong to eat a poor man's food.", "e": "Noble-looking, insulting in substance: refusal humiliates the giver. Letting the poor give is generosity too."}, {"s": 0, "t": "Eat, sleep, leave without a word.", "e": "That's how the suitors behave. Their story ends with an arrow through the throat."}]}, {"q": "Guests have lived in your house for years, eating your herds, draining your cellar and courting your wife.", "o": [{"s": 1, "t": "Endure it: a guest is sacred, Zeus will handle it.", "e": "A guest is sacred while he is a guest. A guest who devours the house is an occupier, and the law doesn't shield him. Though Penelope's patience is part of the victory too: she bought time."}, {"s": 2, "t": "Restore order — and then stop the vengeance.", "e": "Homer's full answer: the bow first, the amnesty after. Slaughter without forgetting is just the next turn of the war."}, {"s": 0, "t": "Burn the house down with them inside.", "e": "Radical. But the house is the thing you were defending; burning it finishes the suitors' work for them."}]}], "xv": [{"min": 8, "t": "A house worth knocking at", "d": "You receive before you interrogate, and you send a guest off equipped rather than merely letting him go. That is what the poem calls xenia, and in its logic everything else rests on houses like yours."}, {"min": 5, "t": "The law, with caveats", "d": "You keep the rule until it costs you: check first, admit second. Most of the poem's characters behave this way — and everything that follows grows out of exactly those caveats."}, {"min": 0, "t": "Polyphemus's side", "d": "Your answers follow the logic of the cave's host: a stranger is a risk before he is anything else. It is a consistent position, and the poem is honest about where it ends for both parties."}], "tl": [{"id": "war", "cls": "war", "n": "The Trojan War", "d": "10 years"}, {"id": "horse", "cls": "war", "n": "The horse · Troy falls", "d": "one night"}, {"id": "cyc", "cls": "sea", "n": "The Cyclops", "d": "days"}, {"id": "cir", "cls": "sea", "n": "Circe", "d": "1 year"}, {"id": "sir", "cls": "sea", "n": "The Sirens", "d": "hours"}, {"id": "scy", "cls": "sea", "n": "Scylla and Charybdis", "d": "hours"}, {"id": "hel", "cls": "sea", "n": "The cattle of Helios", "d": "a month"}, {"id": "cal", "cls": "sea", "n": "Calypso", "d": "7 years"}, {"id": "pha", "cls": "tell", "n": "The Phaeacian court", "d": "one night"}, {"id": "ith", "cls": "home", "n": "Ithaca · a beggar at home", "d": "days"}, {"id": "fin", "cls": "home", "n": "The bow · the amnesty", "d": "finale"}], "tlL": {"chrono": {"war": [2, 1], "horse": [30, 0], "cyc": [38, 2], "cir": [44, 1], "sir": [50, 3], "scy": [55, 2], "hel": [60, 4], "cal": [66, 1], "pha": [76, 3], "ith": [82, 0], "fin": [88, 4]}, "homer": {"ith": [2, 0], "cal": [10, 2], "pha": [18, 4], "war": [28, 1], "horse": [36, 3], "cyc": [46, 0], "cir": [54, 2], "sir": [62, 4], "scy": [70, 1], "hel": [78, 3], "fin": [88, 0]}, "nolan": {"horse": [2, 2], "ith": [10, 0], "war": [20, 4], "cyc": [30, 1], "cal": [40, 3], "cir": [50, 0], "sir": [58, 2], "scy": [66, 4], "hel": [74, 1], "pha": [82, 3], "fin": [90, 2]}}, "tlN": {"chrono": "Laid out in order: ten years of war and ten of travel, eight of which Odysseus spends held inside someone else's hospitality — seven with Calypso, one with Circe. The adventures themselves take about two years.", "homer": "The poem opens at the end of the story: the crisis on Ithaca, then Calypso releasing him, and only then the famous adventures as flashback — a guest's tale at a stranger's table. The poem's own action covers six weeks.", "nolan": "The film opens on the wreck of the horse; the present is the crisis on Ithaca and Telemachus's search, with the past surfacing in nested flashbacks. Nolan returns to the horse three times, each from a different vantage."}, "bo": [{"n": "Following", "y": 1998, "b": 0.006, "g": 0.24, "live": false, "note": "A $6,000 budget, shot on weekends."}, {"n": "Memento", "y": 2000, "b": 9, "g": 40, "live": false, "note": "A story told backwards."}, {"n": "Insomnia", "y": 2002, "b": 46, "g": 113, "live": false, "note": "The only Nolan film from someone else's script."}, {"n": "Batman Begins", "y": 2005, "b": 150, "g": 374, "live": false, "note": "The start of the Dark Knight trilogy and of the big budgets."}, {"n": "The Prestige", "y": 2006, "b": 40, "g": 110, "live": false, "note": "A film about the price of obsession. Modest gross, cult status."}, {"n": "The Dark Knight", "y": 2008, "b": 185, "g": 1006, "live": false, "note": "The first billion."}, {"n": "Inception", "y": 2010, "b": 160, "g": 871, "live": false, "note": "An original screenplay that grossed over $800 million — a rarity."}, {"n": "The Dark Knight Rises", "y": 2012, "b": 250, "g": 1115, "live": false, "note": "Still his highest-grossing film."}, {"n": "Interstellar", "y": 2014, "b": 165, "g": 773, "live": false, "note": "Lives on in re-releases; the number is still climbing."}, {"n": "Dunkirk", "y": 2017, "b": 100, "g": 530, "live": false, "note": "A war film almost without dialogue, and without a visible enemy."}, {"n": "Tenet", "y": 2020, "b": 200, "g": 365, "live": false, "note": "Released into the pandemic."}, {"n": "Oppenheimer", "y": 2023, "b": 100, "g": 975, "live": false, "note": "A triumph of genius that becomes the point of no return."}, {"n": "The Odyssey", "y": 2026, "b": 250, "g": 721, "live": true, "note": "Past $720M by 1 August, in its third week."}], "quiz": [{"q": "Sirens are beautiful maidens with fish tails.", "e": "Homer never describes their appearance, and Greek art drew them as birds with women's heads. The fish tail is a medieval mix-up. And they seduce with knowledge, not bodies.", "a": "not"}, {"q": "The Trojan Horse is described at length in the Iliad.", "e": "The Iliad ends before Troy falls — there's no horse in it. The Odyssey mentions it briefly. The canonical account is Virgil's, seven centuries later.", "a": "not"}, {"q": "Circe turns Odysseus's men into pigs.", "e": "Homer, Book 10, with no softening: she feeds them, waves the wand, drives them into the sty.", "a": "homer"}, {"q": "Scylla was a nymph transformed by a jealous rival.", "e": "Homer's Scylla is pure horror: six necks, three rows of teeth, no backstory. The romantic version is Ovid's. Nolan chose Homer's.", "a": "not"}, {"q": "The marriage bed is carved from a living olive tree and rooted in the house.", "e": "Homer, Book 23 — and it's Penelope's final test: she orders the bed moved, and only the real husband knows it cannot be.", "a": "homer"}, {"q": "\"Beware of Greeks bearing gifts\" is a warning about the horse.", "e": "That's Laocoön in Virgil. The thought is thoroughly Homeric, but the line is Latin and seven centuries younger.", "a": "not"}, {"q": "The old dog recognises his returning master and dies.", "e": "Homer, Book 17. Twenty years of waiting, one wag of the tail, death. The shortest tragedy in literature, and it's in the original.", "a": "homer"}, {"q": "Mysterious \"Sea Peoples\" attack Ithaca.", "e": "Not in the poem: reported as Nolan's historicising addition. The Sea Peoples themselves are real, known from Bronze Age Egyptian records, contemporaries of a possible Trojan war.", "a": "not"}, {"q": "Achilles' heel: his mother dipped him in the Styx holding that heel.", "e": "In the Iliad Achilles is as woundable as anyone. The Styx story comes from much later authors — textbook \"Homer\" that isn't in Homer.", "a": "not"}, {"q": "Polyphemus is Poseidon's son, which is why the curse works.", "e": "Homer, Book 9. Blinding the sea god's son bought the sailor ten years of precisely aimed revenge.", "a": "homer"}], "qr": [{"min": 9, "t": "A bard", "d": "You tell Homer from Virgil and Ovid with your eyes shut — as befits a blind singer."}, {"min": 6, "t": "A Phaeacian", "d": "You listened closely and wept in the right places. At Alcinous's court they would have heard you out."}, {"min": 0, "t": "A lotus-eater", "d": "Something you ate, perhaps. But the lotus wears off — the sections above are still there."}]};
+var D = {"root": "../", "ga": "G-9BLFSZP6X2", "clarity": "", "t": {"sound_on": "Sound on", "sound_off": "Sound off", "share": "Share", "share_done": "Link copied", "desc": "Xenia, the ancient law of hospitality, as the key to Nolan's Odyssey: why the horse is a crime, the wandering a sentence, and the slaughter a trial.", "choice_law_kept": "The law held", "choice_law_broken": "The law was broken", "x_step": "Threshold", "x_of": "of", "x_next": "Next", "x_verdict": "See the verdict", "x_again": "Start over", "x_score": "Result", "bo_budget": "Budget", "bo_gross": "Worldwide", "bo_live": "still running", "qz_stmt": "Statement", "qz_next": "Next", "qz_result": "Result", "qz_again": "Start over", "name_after_sub": "The curse now has an address.", "tl_m1": "Events in chronological order", "tl_m2": "As Homer tells it", "tl_m3": "As Nolan cuts it", "tl_read": "follow the line downward", "map_hint_touch": "Tap a point to see where it is and what is actually there", "tl_hint_touch": "Tap an event to see where it lands in each of the three orderings. The chart scrolls sideways."}, "map": [{"id": "troy", "x": 833, "y": 146, "lx": 0, "ly": -20, "name": "Troy", "role": "The breach", "desc": "The gift rolls through the gate. That night the Greeks cut down a sleeping city — shot as horror, not as triumph.", "place": "Hisarlik, north-west Turkey", "fact": "Heinrich Schliemann excavated the mound in the 1870s and found nine cities stacked one on another. Which layer is Homer’s Troy is still disputed.", "c1": "Hide inside the horse", "c2": "Say it: even war has a limit", "o1k": "bad", "o1": "The city burns. This is where reviewers place the line: we violated all that's ever sacred between people. The sentence is signed; only its length is still unknown.", "o2k": "ok", "o2": "No one in the film says it. Weil explained why: force turns victim and victor alike into things."}, {"id": "lotus", "x": 226, "y": 451, "lx": 0, "ly": -20, "name": "Lotus-eaters", "role": "Hospitality as trap", "desc": "The hosts are flawlessly kind: they offer lotus. Whoever eats forgets home. Xenia without memory stops being xenia.", "place": "Djerba, Tunisia", "fact": "The identification goes back to Herodotus, who wrote that the lotus fruit was as sweet as a date. The usual candidate is the jujube, Ziziphus lotus, which still grows on the island.", "c1": "Taste the lotus", "c2": "Drag your men back to the ship", "o1k": "bad", "o1": "You stay on this shore forever — fed, content and nobody. Forgetting here isn't mercy, it's dissolution.", "o2k": "ok", "o2": "What Odysseus actually does: the weeping crew is tied to the benches. Sometimes a man is brought home against his will."}, {"id": "cyclops", "x": 396, "y": 265, "lx": -14, "ly": 20, "name": "The Cyclops", "role": "The host's exam — and the host fails it", "desc": "Asked for a stranger's due, Polyphemus dines on two guests. Odysseus blinds him and calls himself Nobody. All that's left is to leave quietly.", "place": "Aci Trezza, Sicily", "fact": "Basalt stacks rise from the water offshore — the Faraglioni dei Ciclopi, said to be the rocks the blinded Polyphemus hurled after the ship. Etna’s slopes begin a few kilometres inland; the summit is about twenty-five.", "c1": "Leave as Nobody", "c2": "Shout your name from the deck", "o1k": "ok", "o1": "The curse has nowhere to land. But this is not the choice the hero makes.", "o2k": "bad", "o2": "The name goes to Poseidon with a request attached: let him come home late, broken, alone — and find trouble in his house."}, {"id": "aeolus", "x": 388, "y": 220, "lx": 30, "ly": -16, "name": "Aeolus", "role": "The perfect gift", "desc": "The lord of winds hosts him properly and hands over a parting gift: a bag holding every contrary wind. Ithaca is already in sight.", "place": "The Aeolian Islands", "fact": "They carry his name: antiquity put the island of Aeolus here. The archipelago is volcanic, and the bag of winds may well have grown out of its squalls.", "c1": "Trust the crew", "c2": "Stay awake and guard the bag", "o1k": "bad", "o1": "They open it — there must be gold — and the storm throws the ships back. A gift opened out of greed is a small Trojan horse.", "o2k": "ok", "o2": "He did exactly that, and fell asleep within sight of home. The body is weaker than the will; the law accounts for it."}, {"id": "laestry", "x": 159, "y": 75, "lx": 0, "ly": -20, "name": "Laestrygonians", "role": "Total anti-xenia", "desc": "The scouts are invited into the palace and eaten. The harbour turns out to be a trap: giants smash the ships with boulders.", "place": "Bonifacio, Corsica", "fact": "A narrow inlet between sheer limestone cliffs. Homer’s description of the harbour matches it almost word for word: a slit for an entrance, walls overhead.", "c1": "Moor in the sheltered bay", "c2": "Keep your ship outside", "o1k": "bad", "o1": "One ship of twelve gets out. The heaviest losses of the whole voyage, at the place with the warmest welcome.", "o2k": "ok", "o2": "His ship alone stayed outside. After the Cyclops he knows what a mouth shaped like a door looks like."}, {"id": "circe", "x": 314, "y": 82, "lx": -8, "ly": -20, "name": "Circe", "role": "Hospitality as transformation", "desc": "The hostess feeds her guests and turns them into pigs — bad xenia made literal. Then a year of honest hospitality.", "place": "Monte Circeo, Italy", "fact": "A headland south of Rome that reads as an island from the sea: the low marshy strip in front of it disappears at a distance. Hence \"Circe’s island\".", "c1": "Feast for a year", "c2": "Remember Ithaca", "o1k": "ok", "o1": "The year is a legitimate rest, and she sends him off with directions. A good host lets you go — that's what separates her from a trap.", "o2k": "ok", "o2": "It was the crew who had to do the reminding, not the hero. Comfort is the softest prison on this route."}, {"id": "sirens", "x": 367, "y": 115, "lx": 34, "ly": -8, "name": "The Sirens", "role": "A test by knowledge", "desc": "Homer's Sirens seduce with knowledge, not bodies: they promise to sing of everything, the war at Troy included. For a man carrying that guilt it's worse than beauty.", "place": "Li Galli, near Positano", "fact": "Three islets antiquity assigned to the Sirens. In the twentieth century the dancer Léonide Massine bought them, and later Rudolf Nureyev.", "c1": "Tie yourself to the mast", "c2": "Fill your ears with wax", "o1k": "ok", "o1": "To hear it and be unable to move. Which is close to how cinema itself works: a bound audience being sung its own guilt.", "o2k": "ok", "o2": "The crew survives deaf. Also a strategy — but then there was no point sailing past them."}, {"id": "scylla", "x": 414, "y": 231, "lx": 58, "ly": 10, "name": "Scylla and Charybdis", "role": "A toll with no negotiation", "desc": "The Cyclops could be bargained with: he had a face and a name. Scylla has six blank necks; Charybdis is nothing but a throat.", "place": "The Strait of Messina", "fact": "Charybdis is not invented: tidal currents of two seas collide in the narrows and throw real whirlpools. Locally they are called garofali.", "c1": "Keep to Scylla: lose six", "c2": "Keep to Charybdis: all or nothing", "o1k": "ok", "o1": "A guaranteed price instead of a lottery. Six oarsmen, a bill the captain pays in silence. The adult decision — and no easier to sleep on.", "o2k": "bad", "o2": "The funnel doesn't haggle — it takes the whole ship. Later, clinging to a mast, he meets her anyway, and survives alone."}, {"id": "helios", "x": 401, "y": 250, "lx": 46, "ly": 26, "name": "The cattle of Helios", "role": "The crew's final exam", "desc": "A forbidden island, a sacred herd. A storm pins the ship for a month and the food runs out. The men wait for the captain to sleep.", "place": "Thrinakia — identified with Sicily", "fact": "Sicily’s old name, Trinacria, means \"three-pointed\", and the flag still carries the emblem: three legs radiating from a centre. Ancient readers took Homer’s Thrinakia for the same island.", "c1": "Starve, but don't touch them", "c2": "Slaughter them: the gods will forgive", "o1k": "ok", "o1": "The only way through — and nobody but Odysseus held out.", "o2k": "bad", "o2": "Zeus answers with lightning: the ship in splinters, the crew on the seabed. The sacred stays sacred even when you're starving."}, {"id": "calypso", "x": 360, "y": 339, "lx": 0, "ly": 24, "name": "Calypso", "role": "Hospitality as captivity", "desc": "Seven of the ten years. The goddess offers immortality: perfect conditions and no way out.", "place": "Gozo, Malta", "fact": "A cave above Ramla Bay is shown as Calypso’s. The identification is ancient — Callimachus already linked Gozo to Ogygia — and Ogygia is still used as the island’s poetic name.", "c1": "Stay: eternity and peace", "c2": "Leave: a raft, the sea, a mortal wife", "o1k": "bad", "o1": "Eternity on someone else's island is the lotus for one. Homer is precise: nights with the goddess, days on the shore, staring at water.", "o2k": "ok", "o2": "The choice that defines the whole work: a mortal life at home over immortality as a guest. Zeus sends Hermes to order her to let him go — the law outranks the goddess."}, {"id": "phaeacia", "x": 584, "y": 163, "lx": -10, "ly": -20, "name": "The Phaeacians", "role": "Xenia at its best", "desc": "A naked stranger is washed, clothed, seated at the table — and not asked his name until he's ready. His story at that court fills four of the poem's twenty-four books — and nearly all the famous ones.", "place": "Corfu", "fact": "In Paleokastritsa they point out a rock said to be the Phaeacian ship: Poseidon, enraged, turned to stone the vessel that carried Odysseus home.", "c1": "Give your name at once", "c2": "Wait until they ask", "o1k": "ok", "o1": "Honest, but not how it's done here: table first, name after. The bard sings of Troy, the guest weeps, and only then does the king ask who he is.", "o2k": "ok", "o2": "Which is what happens. A properly received guest becomes the storyteller; they sail him home asleep and take no payment."}, {"id": "ithaca", "x": 615, "y": 223, "lx": 30, "ly": 14, "name": "Ithaca", "role": "The mirror breach", "desc": "A house where the law is inverted again: guests eat the estate and court the lady of the house. Odysseus walks in as a beggar.", "place": "Ithaca, the Ionian Islands", "fact": "The matching name does not settle it: some scholars place Homer’s Ithaca on neighbouring Cephalonia, and Homer’s description only half fits either.", "c1": "Reveal yourself now", "c2": "Enter as Nobody — again", "o1k": "bad", "o1": "Against a hundred armed men that's suicide. Order isn't restored by a gesture but by procedure — a bow only the owner can string.", "o2k": "ok", "o2": "The symmetry closes: he began as Nobody in a cave and ends as Nobody at his own hearth. Only by crossing the house as a stranger does he see who kept the law: a wife, a son, a swineherd and an old dog."}], "xenia": [{"q": "Night, storm. A stranger knocks — soaked, empty-handed, giving no name.", "o": [{"s": 2, "t": "Let him in, seat him by the fire, feed him. Questions later.", "e": "Canonical. Even Eumaeus the swineherd does this — and his guest turns out to be a king. Or a god: the whole system rests on that."}, {"s": 1, "t": "Ask through the door who he is first.", "e": "Humanly sensible, legally a failure: questions before the meal insult the guest."}, {"s": 0, "t": "Don't open. These are unsettled times.", "e": "Precisely the Cyclops's reasoning — and the poem shows where it leaves the owner of the cave."}]}, {"q": "Your guest is into his seventh year. It's time he went home, but you like having him. You are Calypso.", "o": [{"s": 2, "t": "Help him build a raft, provision it, teach him the stars.", "e": "Which is how it ends: Zeus sends Hermes to remind her that holding a guest is a breach."}, {"s": 0, "t": "Keep him. Offer immortality.", "e": "Hospitality without the right to leave is captivity with a good view."}, {"s": 1, "t": "Let him go, but sulk and offer nothing.", "e": "Half the job. Xenia isn't 'not obstructing' — it's outfitting the journey. The parting gift is part of the law."}]}, {"q": "A recent enemy sends a magnificent gift — so generous it's uncomfortable.", "o": [{"s": 1, "t": "Accept with honour: refusing a gift is an insult.", "e": "Formally impeccable. One horse was accepted with honour too — ask the Trojans how that went."}, {"s": 2, "t": "Accept it, but look inside first.", "e": "The wisdom of a survivor. Trust underwrites xenia, but after Troy you read the law carefully."}, {"s": 0, "t": "Refuse it publicly and mock it.", "e": "Now you're the offender: a refused gift is a slap. Ten-year wars have grown from those."}]}, {"q": "You're a guest in a poor house. Your host shares his last bread and gives you his only bed.", "o": [{"s": 2, "t": "Accept gratefully and remember the debt.", "e": "The heart of xenia is reciprocity deferred. Eumaeus shares bread with a beggar and ends up at a king's table."}, {"s": 0, "t": "Refuse: it's wrong to eat a poor man's food.", "e": "Noble-looking, insulting in substance: refusal humiliates the giver. Letting the poor give is generosity too."}, {"s": 0, "t": "Eat, sleep, leave without a word.", "e": "That's how the suitors behave. Their story ends with an arrow through the throat."}]}, {"q": "Guests have lived in your house for years, eating your herds, draining your cellar and courting your wife.", "o": [{"s": 1, "t": "Endure it: a guest is sacred, Zeus will handle it.", "e": "A guest is sacred while he is a guest. A guest who devours the house is an occupier, and the law doesn't shield him. Though Penelope's patience is part of the victory too: she bought time."}, {"s": 2, "t": "Restore order — and then stop the vengeance.", "e": "Homer's full answer: the bow first, the amnesty after. Slaughter without forgetting is just the next turn of the war."}, {"s": 0, "t": "Burn the house down with them inside.", "e": "Radical. But the house is the thing you were defending; burning it finishes the suitors' work for them."}]}], "xv": [{"min": 8, "t": "A house worth knocking at", "d": "You receive before you interrogate, and you send a guest off equipped rather than merely letting him go. That is what the poem calls xenia, and in its logic everything else rests on houses like yours."}, {"min": 5, "t": "The law, with caveats", "d": "You keep the rule until it costs you: check first, admit second. Most of the poem's characters behave this way — and everything that follows grows out of exactly those caveats."}, {"min": 0, "t": "Polyphemus's side", "d": "Your answers follow the logic of the cave's host: a stranger is a risk before he is anything else. It is a consistent position, and the poem is honest about where it ends for both parties."}], "tl": [{"id": "war", "cls": "war", "n": "The Trojan War", "d": "10 years"}, {"id": "horse", "cls": "war", "n": "The horse · Troy falls", "d": "one night"}, {"id": "cyc", "cls": "sea", "n": "The Cyclops", "d": "days"}, {"id": "cir", "cls": "sea", "n": "Circe", "d": "1 year"}, {"id": "sir", "cls": "sea", "n": "The Sirens", "d": "hours"}, {"id": "scy", "cls": "sea", "n": "Scylla and Charybdis", "d": "hours"}, {"id": "hel", "cls": "sea", "n": "The cattle of Helios", "d": "a month"}, {"id": "cal", "cls": "sea", "n": "Calypso", "d": "7 years"}, {"id": "pha", "cls": "tell", "n": "The Phaeacian court", "d": "one night"}, {"id": "ith", "cls": "home", "n": "Ithaca · a beggar at home", "d": "days"}, {"id": "fin", "cls": "home", "n": "The bow · the amnesty", "d": "finale"}], "tlL": {"chrono": {"war": [2, 1], "horse": [30, 0], "cyc": [38, 2], "cir": [44, 1], "sir": [50, 3], "scy": [55, 2], "hel": [60, 4], "cal": [66, 1], "pha": [76, 3], "ith": [82, 0], "fin": [88, 4]}, "homer": {"ith": [2, 0], "cal": [10, 2], "pha": [18, 4], "war": [28, 1], "horse": [36, 3], "cyc": [46, 0], "cir": [54, 2], "sir": [62, 4], "scy": [70, 1], "hel": [78, 3], "fin": [88, 0]}, "nolan": {"horse": [2, 2], "ith": [10, 0], "war": [20, 4], "cyc": [30, 1], "cal": [40, 3], "cir": [50, 0], "sir": [58, 2], "scy": [66, 4], "hel": [74, 1], "pha": [82, 3], "fin": [90, 2]}}, "tlN": {"chrono": "Laid out in order: ten years of war and ten of travel, eight of which Odysseus spends held inside someone else's hospitality — seven with Calypso, one with Circe. The adventures themselves take about two years.", "homer": "The poem opens at the end of the story: the crisis on Ithaca, then Calypso releasing him, and only then the famous adventures as flashback — a guest's tale at a stranger's table. The poem's own action covers six weeks.", "nolan": "The film opens on the wreck of the horse; the present is the crisis on Ithaca and Telemachus's search, with the past surfacing in nested flashbacks. Nolan returns to the horse three times, each from a different vantage."}, "bo": [{"n": "Following", "y": 1998, "b": 0.006, "g": 0.24, "live": false, "note": "A $6,000 budget, shot on weekends."}, {"n": "Memento", "y": 2000, "b": 9, "g": 40, "live": false, "note": "A story told backwards."}, {"n": "Insomnia", "y": 2002, "b": 46, "g": 113, "live": false, "note": "The only Nolan film from someone else's script."}, {"n": "Batman Begins", "y": 2005, "b": 150, "g": 374, "live": false, "note": "The start of the Dark Knight trilogy and of the big budgets."}, {"n": "The Prestige", "y": 2006, "b": 40, "g": 110, "live": false, "note": "A film about the price of obsession. Modest gross, cult status."}, {"n": "The Dark Knight", "y": 2008, "b": 185, "g": 1006, "live": false, "note": "The first billion."}, {"n": "Inception", "y": 2010, "b": 160, "g": 871, "live": false, "note": "An original screenplay that grossed over $800 million — a rarity."}, {"n": "The Dark Knight Rises", "y": 2012, "b": 250, "g": 1115, "live": false, "note": "Still his highest-grossing film."}, {"n": "Interstellar", "y": 2014, "b": 165, "g": 773, "live": false, "note": "Lives on in re-releases; the number is still climbing."}, {"n": "Dunkirk", "y": 2017, "b": 100, "g": 530, "live": false, "note": "A war film almost without dialogue, and without a visible enemy."}, {"n": "Tenet", "y": 2020, "b": 200, "g": 365, "live": false, "note": "Released into the pandemic."}, {"n": "Oppenheimer", "y": 2023, "b": 100, "g": 975, "live": false, "note": "A triumph of genius that becomes the point of no return."}, {"n": "The Odyssey", "y": 2026, "b": 250, "g": 721, "live": true, "note": "Past $720M by 1 August, in its third week."}], "quiz": [{"q": "Sirens are beautiful maidens with fish tails.", "e": "Homer never describes their appearance, and Greek art drew them as birds with women's heads. The fish tail is a medieval mix-up. And they seduce with knowledge, not bodies.", "a": "not"}, {"q": "The Trojan Horse is described at length in the Iliad.", "e": "The Iliad ends before Troy falls — there's no horse in it. The Odyssey mentions it briefly. The canonical account is Virgil's, seven centuries later.", "a": "not"}, {"q": "Circe turns Odysseus's men into pigs.", "e": "Homer, Book 10, with no softening: she feeds them, waves the wand, drives them into the sty.", "a": "homer"}, {"q": "Scylla was a nymph transformed by a jealous rival.", "e": "Homer's Scylla is pure horror: six necks, three rows of teeth, no backstory. The romantic version is Ovid's. Nolan chose Homer's.", "a": "not"}, {"q": "The marriage bed is carved from a living olive tree and rooted in the house.", "e": "Homer, Book 23 — and it's Penelope's final test: she orders the bed moved, and only the real husband knows it cannot be.", "a": "homer"}, {"q": "\"Beware of Greeks bearing gifts\" is a warning about the horse.", "e": "That's Laocoön in Virgil. The thought is thoroughly Homeric, but the line is Latin and seven centuries younger.", "a": "not"}, {"q": "The old dog recognises his returning master and dies.", "e": "Homer, Book 17. Twenty years of waiting, one wag of the tail, death. The shortest tragedy in literature, and it's in the original.", "a": "homer"}, {"q": "Mysterious \"Sea Peoples\" attack Ithaca.", "e": "Not in the poem: reported as Nolan's historicising addition. The Sea Peoples themselves are real, known from Bronze Age Egyptian records, contemporaries of a possible Trojan war.", "a": "not"}, {"q": "Achilles' heel: his mother dipped him in the Styx holding that heel.", "e": "In the Iliad Achilles is as woundable as anyone. The Styx story comes from much later authors — textbook \"Homer\" that isn't in Homer.", "a": "not"}, {"q": "Polyphemus is Poseidon's son, which is why the curse works.", "e": "Homer, Book 9. Blinding the sea god's son bought the sailor ten years of precisely aimed revenge.", "a": "homer"}], "qr": [{"min": 9, "t": "A bard", "d": "You tell Homer from Virgil and Ovid with your eyes shut — as befits a blind singer."}, {"min": 6, "t": "A Phaeacian", "d": "You listened closely and wept in the right places. At Alcinous's court they would have heard you out."}, {"min": 0, "t": "A lotus-eater", "d": "Something you ate, perhaps. But the lotus wears off — the sections above are still there."}]};
 var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 var TOUCH = matchMedia('(hover: none)').matches;
 var $ = function(s,r){return (r||document).querySelector(s);};
 var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
 var clamp = function(v,a,b){return v<a?a:v>b?b:v;};
 function buzz(ms){ if(navigator.vibrate && TOUCH) try{navigator.vibrate(ms);}catch(e){} }
+
+/* ───────── аналитика: ничего не грузится до согласия ───────── */
+var LANG = D.root ? 'en' : 'ru';
+var AN = (function(){
+  var GA=D.ga||'', CL=D.clarity||'';
+  var CKEY='xen-consent', UKEY='xen-uid';
+  var q=[], up=false;
+  function ls(k,v){ try{ return v===undefined ? localStorage.getItem(k) : (localStorage.setItem(k,v),v); }
+    catch(e){ return null; } }
+  function uid(){
+    var u=ls(UKEY);
+    if(!u){ u = (window.crypto&&crypto.randomUUID) ? crypto.randomUUID()
+              : 'u'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+      ls(UKEY,u); }
+    return u;
+  }
+  function up_ga(){
+    if(!GA) return;
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA, { anonymize_ip:true, allow_google_signals:false,
+      allow_ad_personalization_signals:false, user_id:uid(), content_group:LANG });
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id='+GA; document.head.appendChild(s);
+  }
+  function up_cl(){
+    if(!CL) return;
+    (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r); t.async=1; t.src='https://www.clarity.ms/tag/'+i;
+      y=l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t,y);
+    })(window,document,'clarity','script',CL);
+    try{ clarity('identify', uid()); }catch(e){}
+  }
+  function boot(){ if(up) return; up=true; up_ga(); up_cl();
+    q.splice(0).forEach(function(a){ fire(a[0],a[1]); }); }
+  function fire(n,p){
+    p=p||{}; p.lang=LANG;
+    if(window.gtag) try{ gtag('event', n, p); }catch(e){}
+    if(window.clarity) try{ clarity('event', n); }catch(e){}
+  }
+  return {
+    on:function(){ return !!(GA||CL); },
+    consent:function(){ return ls(CKEY); },
+    accept:function(){ ls(CKEY,'yes'); boot(); },
+    decline:function(){ ls(CKEY,'no'); },
+    start:function(){ if(ls(CKEY)==='yes') boot(); },
+    send:function(n,p){ if(up) fire(n,p); else if(q.length<100) q.push([n,p]); }
+  };
+})();
+function track(n,p){ if(AN.on()) AN.send(n,p); }
+
+/* ───────── баннер согласия ───────── */
+(function(){
+  var el=$('#consent'); if(!el) return;
+  if(!AN.on()) return;                       // счётчиков нет — баннер не нужен
+  AN.start();
+  if(AN.consent()) return;                   // выбор уже сделан
+  setTimeout(function(){ el.hidden=false; requestAnimationFrame(function(){ el.classList.add('in'); }); }, RM?300:2600);
+  function close(){ el.classList.remove('in'); setTimeout(function(){ el.hidden=true; }, 400); }
+  $('#cnYes').addEventListener('click',function(){ AN.accept(); close(); track('consent',{choice:'accept'}); });
+  $('#cnNo').addEventListener('click',function(){ AN.decline(); close(); });
+})();
 
 /* ───────── заставка ───────── */
 (function(){ var b=$('#boot'); if(!b) return;
@@ -1001,20 +1084,54 @@ var Snd = { ctx:null,on:false,g:null,music:null,
 (function(){ var b=$('#sndBtn'); if(!b) return;
   var a=new Audio(); a.loop=true; a.preload='metadata';
   // preload='none' не даёт браузеру дойти до canplay, и настоящий трек никогда не подхватывался
-  a.addEventListener('loadedmetadata',function(){ Snd.music=a; });
+  a.addEventListener('loadedmetadata',function(){ Snd.music=a; if(want) arm(); });
   a.addEventListener('error',function(){ Snd.music=null; });
   if(!(navigator.connection && navigator.connection.saveData)) a.src=D.root+'assets/score.mp3';
+
+  function paint(on){ b.classList.toggle('act-on',on); b.setAttribute('aria-pressed',String(on));
+    b.querySelector('span').textContent = on ? D.t.sound_on : D.t.sound_off; }
   b.addEventListener('click',function(){
-    var on=Snd.toggle(); b.classList.toggle('act-on',on); b.setAttribute('aria-pressed',String(on));
-    b.querySelector('span').textContent = on ? D.t.sound_on : D.t.sound_off;
+    var on=Snd.toggle(); paint(on); armed=true;
+    try{ localStorage.setItem('xen-sound', on?'on':'off'); }catch(e){}
+    track('sound_toggle',{state:on?'on':'off',source:'button'});
   });
+
+  // Звук включён по умолчанию. Браузеры не дают запустить его без жеста пользователя,
+  // поэтому кнопка сразу горит, а трек стартует на первом же касании или клике.
+  // Если человек выключил звук — помним и больше не включаем.
+  var saved=null; try{ saved=localStorage.getItem('xen-sound'); }catch(e){}
+  var want = (saved!=='off') && !RM && !(navigator.connection && navigator.connection.saveData);
+  var armed=false;
+  function arm(){
+    if(armed || !want || !Snd.music) return;
+    if(Snd.on) return;
+    armed=true;
+    if(Snd.toggle()){ paint(true); track('sound_autostart',{via:'policy_allowed'}); return; }
+    armed=false;
+  }
+  function onGesture(){
+    if(armed || !want) return;
+    if(!Snd.music){ return; }
+    armed=true;
+    if(Snd.toggle()){ paint(true); track('sound_autostart',{via:'first_gesture'}); }
+    off();
+  }
+  function off(){ ['pointerdown','keydown','touchstart'].forEach(function(ev){
+    removeEventListener(ev,onGesture,true); }); }
+  if(want){
+    paint(true);                              // кнопка сразу в состоянии «включено»
+    ['pointerdown','keydown','touchstart'].forEach(function(ev){
+      addEventListener(ev,onGesture,{capture:true,passive:true}); });
+    setTimeout(arm, 300);                     // если политика браузера позволяет — заиграет сразу
+  }
 })();
 
 /* ───────── поделиться ───────── */
 (function(){ var b=$('#shareBtn'); if(!b) return;
   b.addEventListener('click',async function(){
     var data={title:document.title, text:D.t.desc, url:location.href};
-    try{ if(navigator.share){ await navigator.share(data); return; } }catch(e){ if(e.name==='AbortError') return; }
+    try{ if(navigator.share){ await navigator.share(data); track('share',{method:'system'}); return; } }catch(e){ if(e.name==='AbortError'){ track('share',{method:'cancelled'}); return; } }
+    track('share',{method:'clipboard'});
     try{ await navigator.clipboard.writeText(location.href); b.textContent=D.t.share_done;
       setTimeout(function(){ b.textContent=D.t.share; },2200); }catch(e){}
   });
@@ -1068,8 +1185,11 @@ $$('.scene').forEach(function(sc){
       caps.forEach(function(c,i){ c.classList.toggle('on', i===idx); }); }
   }
   // кадр догоняет прокрутку с затуханием: рывок колеса превращается в движение, а не в скачок
+  var pmark={};
   function tick(){
     var s=pos(); live=s.vis; paint(s.p);
+    [25,50,75,100].forEach(function(k){ if(s.p*100>=k && !pmark[k]){ pmark[k]=1;
+      track('scene_progress',{scene:sc.id, percent:k}); } });
     if(dur){ want=s.p*dur;
       at += (want-at) * (RM ? 1 : .22);
       if(!seeking && Math.abs(at-v.currentTime)>.03){
@@ -1137,6 +1257,7 @@ function bindTorch(box){
   function go(cx,cy){ var r=box.getBoundingClientRect();
     box.style.setProperty('--tx', clamp((cx-r.left)/r.width*100,0,100)+'%');
     box.style.setProperty('--ty', clamp((cy-r.top)/r.height*100,0,100)+'%');
+    if(!box.classList.contains('used')) track('torch_used');
     box.classList.add('used'); }
   var auto=TOUCH; // на телефоне свет ведёт сам, пока палец не повёл его сам
   box.addEventListener('pointermove',function(e){ if(e.pointerType==='touch') return; go(e.clientX,e.clientY); });
@@ -1210,6 +1331,7 @@ if(TOUCH){
     grp.classList.add('sel');
     if(chips[i]){ chips[i].classList.add('sel'); chips[i].setAttribute('aria-current','true'); }
     var p=D.map[i]; sail(p.x,p.y);
+    track('map_open',{stop:p.id, stop_no:i+1, name:p.name, via:innerWidth<640?'chip':'point'});
     ep.innerHTML='<p class="role">'+p.role+'</p><h3>'+p.name+'</h3>'+
       '<p class="place"><span>'+p.place+'</span> '+p.fact+'</p>'+
       '<p>'+p.desc+'</p>'+
@@ -1224,7 +1346,8 @@ if(TOUCH){
       $$('.pick',ep).forEach(function(x,k){ x.disabled=true; x.classList.toggle('mute',k!==n); });
       grp.classList.remove('ok','no'); grp.classList.add(kind==='ok'?'ok':'no');
       if(chips[i]){ chips[i].classList.remove('ok','no'); chips[i].classList.add(kind==='ok'?'ok':'no'); }
-      if(fresh){ answered[p.id]=n; App.score(kind==='ok'?'ok':'no','map-'+p.id); }
+      if(fresh){ answered[p.id]=n; App.score(kind==='ok'?'ok':'no','map-'+p.id);
+        track('map_choice',{stop:p.id, stop_no:i+1, choice:n+1, outcome:kind, name:p.name}); }
     }
     if(answered[p.id]!==undefined){ settle(answered[p.id],false); }
     else $$('.pick',ep).forEach(function(b){
@@ -1250,7 +1373,7 @@ if(TOUCH){
   var out=$('#nameOut'), sub=$('#nameSub'), body=$('#nameBody');
   var target='ΟΔΥΣΣΕΥΣ', pool='ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';
   b.addEventListener('click',function(){
-    b.disabled=true;
+    b.disabled=true; track('name_revealed');
     var f=0, total=RM?1:34;
     var iv=setInterval(function(){ f++;
       var done=Math.floor(target.length*f/total), s='';
@@ -1283,6 +1406,7 @@ if(TOUCH){
         b.classList.add('chosen');
         why.textContent=o.e; why.classList.add('on');
         App.score(o.s>=2?'ok':'no','x-'+i);
+        track('xenia_answer',{step:i+1, option:o.t.slice(0,90), points:o.s, running_score:sc});
         var n=document.createElement('button'); n.className='pick'; n.style.marginTop='20px';
         n.textContent = i<D.xenia.length-1 ? D.t.x_next+' →' : D.t.x_verdict;
         n.addEventListener('click',function(){ i++; if(i<D.xenia.length) draw(); else fin(); });
@@ -1294,6 +1418,7 @@ if(TOUCH){
   function fin(){
     box.hidden=true; end.hidden=false;
     var v=D.xv.filter(function(x){ return sc>=x.min; })[0];
+    track('xenia_verdict',{score:sc, max:10, verdict:v.t});
     end.innerHTML='<h3 class="serif">'+v.t+'</h3><p>'+v.d+'</p>'+
       '<p class="score">'+D.t.x_score+': '+sc+' / 10</p>'+
       '<button class="btn" style="margin-top:20px" id="xAgain">'+D.t.x_again+'</button>';
@@ -1338,6 +1463,7 @@ if(TOUCH){
       groups.forEach(function(x){ x.classList.remove('on'); x.classList.add('dim'); });
       g.classList.remove('dim'); g.classList.add('on');
       if(pick) pick.innerHTML='<b>'+ev.n+'</b> · '+ev.d+' — '+D.t.tl_read;
+      track('timeline_event',{event:ev.id, name:ev.n});
     }
     function off(){ groups.forEach(function(x){ x.classList.remove('on','dim'); });
       if(pick) pick.textContent=hint; }
@@ -1362,7 +1488,9 @@ if(TOUCH){
       '<div class="bar g" style="width:'+Math.max(f.g/MAX*100,.2)+'%"><span>'+fmt(f.g)+(f.live?' ↗':'')+'</span></div></div>';
     var body='<b>'+f.n+' ('+f.y+')</b><br>'+D.t.bo_budget+': '+fmt(f.b)+'<br>'+D.t.bo_gross+': '+fmt(f.g)+
         (f.live?' — '+D.t.bo_live:'')+'<br><span style="color:var(--paper-3)">'+f.note+'</span>';
-    function move(e){ tip.style.opacity=1; tip.innerHTML=body;
+    var hov=false;
+    function move(e){ if(!hov){ hov=true; track('bo_open',{film:f.n, year:f.y}); }
+      tip.style.opacity=1; tip.innerHTML=body;
       tip.style.left=Math.min(e.clientX+16, innerWidth-274)+'px';
       tip.style.top=Math.min(e.clientY+14, innerHeight-150)+'px'; }
     if(TOUCH){
@@ -1371,12 +1499,13 @@ if(TOUCH){
       var note=document.createElement('div'); note.className='bo-note'; note.innerHTML=body;
       row.appendChild(note);
       function flip(){ var open=row.classList.toggle('open');
-        row.setAttribute('aria-expanded',String(open)); }
+        row.setAttribute('aria-expanded',String(open));
+        if(open) track('bo_open',{film:f.n, year:f.y}); }
       row.addEventListener('click',flip);
       row.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); flip(); } });
     } else {
       row.addEventListener('pointermove',move);
-      row.addEventListener('pointerleave',function(){ tip.style.opacity=0; });
+      row.addEventListener('pointerleave',function(){ tip.style.opacity=0; hov=false; });
     }
     host.appendChild(row);
   });
@@ -1412,6 +1541,8 @@ if(TOUCH){
       why.textContent=D.quiz[i].e; why.classList.add('on');
       sEl.textContent=sc+' / '+(i+1);
       App.score(ok?'ok':'no','q-'+i);
+      track('quiz_answer',{step:i+1, statement:D.quiz[i].q.slice(0,90), answer:b.dataset.a,
+        correct:ok?1:0, running_score:sc});
       next.hidden=false; next.textContent = i<D.quiz.length-1 ? D.t.qz_next+' →' : D.t.qz_result;
     });
   });
@@ -1420,6 +1551,7 @@ if(TOUCH){
     if(i<D.quiz.length){ draw(); return; }
     box.hidden=true; end.hidden=false;
     var v=D.qr.filter(function(x){ return sc>=x.min; })[0];
+    track('quiz_verdict',{score:sc, max:D.quiz.length, verdict:v.t});
     end.innerHTML='<h3 class="serif">'+v.t+'</h3><p>'+v.d+'</p><p class="score">'+sc+' / '+D.quiz.length+'</p>'+
       '<button class="btn" style="margin-top:20px" id="qzAgain">'+D.t.qz_again+'</button>';
     $('#qzAgain').addEventListener('click',function(){ i=0;sc=0;end.hidden=true;box.hidden=false;draw(); });
@@ -1528,8 +1660,10 @@ if(TOUCH){
     ctx.fillStyle='rgba(240,235,226,.22)'; ctx.fillRect(HALF-1,0,2,H);
   }
 
+  var zoomT=null;
   function setZoom(v){ cell=Math.max(2,Math.round((2+v*1.9)/RATIO)); val.textContent='×'+(+v).toFixed(0);
-    drawGrid(); render(); }
+    drawGrid(); render();
+    clearTimeout(zoomT); zoomT=setTimeout(function(){ track('grain_zoom',{value:+v}); }, 700); }
   range.addEventListener('input',function(){ setZoom(+range.value); });
   fit(); setZoom(+range.value);
   var rt=null;
@@ -1548,6 +1682,90 @@ if(TOUCH){
     new IntersectionObserver(function(e){ live=e[0].isIntersecting; wake(); },{threshold:.25}).observe(cv);
     document.addEventListener('visibilitychange',wake);
   }
+})();
+
+/* ───────── что мы измеряем ───────── */
+(function(){
+  if(!AN.on()) return;
+
+  /* 1. глубина прокрутки */
+  var smark={};
+  addEventListener('scroll',function(){
+    var d=document.documentElement, m=d.scrollHeight-d.clientHeight; if(m<=0) return;
+    var p=d.scrollTop/m*100;
+    [25,50,75,90].forEach(function(k){ if(p>=k && !smark[k]){ smark[k]=1; track('scroll_depth',{percent:k}); } });
+  },{passive:true});
+
+  /* 2. реальная дочитываемость: блок засчитывается, только если он был на экране
+        столько, сколько нужно на его объём текста, а не просто пролетел мимо */
+  var blocks=$$('.col, .act-thesis, .def .body, .aside, blockquote, .three .c, #src .intro');
+  var total=blocks.length, done=0, rmark={}, st=[];
+  blocks.forEach(function(el){
+    var words=(el.textContent||'').trim().split(/\s+/).length;
+    st.push({el:el, need:Math.max(1200, words/200*60000*0.45), t:0, since:0, done:false});
+  });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var i=blocks.indexOf(e.target); if(i<0) return; var s=st[i];
+      if(e.isIntersecting && e.intersectionRatio>=.5){ if(!s.since) s.since=performance.now(); }
+      else if(s.since){ s.t+=performance.now()-s.since; s.since=0; }
+    });
+  },{threshold:[0,.5,.9]});
+  blocks.forEach(function(b){ io.observe(b); });
+  setInterval(function(){
+    if(document.hidden) return;
+    st.forEach(function(s){
+      if(s.done) return;
+      var t=s.t + (s.since?performance.now()-s.since:0);
+      if(t<s.need) return;
+      s.done=true; done++;
+      var pct=done/total*100;
+      [25,50,75,100].forEach(function(k){ if(pct>=k && !rmark[k]){ rmark[k]=1;
+        track('read_depth',{percent:k, blocks:done, of:total}); } });
+    });
+  }, 1500);
+
+  /* 3. активное время: пауза, когда вкладка скрыта или человек замер */
+  var acc=0, mark=performance.now(), idle=false, iT=null, sent=false;
+  function stop(){ if(!idle){ acc+=performance.now()-mark; idle=true; } }
+  function go(){ if(idle){ idle=false; mark=performance.now(); } }
+  function ping(){ go(); clearTimeout(iT); iT=setTimeout(stop, 30000); }
+  ['scroll','pointerdown','pointermove','keydown','touchstart'].forEach(function(ev){
+    addEventListener(ev, ping, {passive:true}); });
+  ping();
+  function flush(){
+    stop(); var s=Math.round(acc/1000); acc=0; idle=true;
+    if(s<3 || sent) return;
+    track('engaged_time',{seconds:s, read_blocks:done, read_of:total,
+      scroll_max:Math.max.apply(null,[0].concat(Object.keys(smark).map(Number)))});
+  }
+  document.addEventListener('visibilitychange',function(){ if(document.hidden){ flush(); } else { go(); } });
+  addEventListener('pagehide',function(){ sent=false; flush(); sent=true; });
+
+  /* 4. каждый клик по интерактивному элементу */
+  document.addEventListener('click',function(e){
+    var n=e.target; if(!n || !n.closest) return;
+    var el=n.closest('a,button,summary,[role=button],input[type=range],label');
+    if(!el) return;
+    var cls=el.className; cls=(cls && cls.baseVal!==undefined) ? cls.baseVal : (cls||'');
+    var sec=el.closest('section,.map-wrap,.panel,footer,header');
+    var p={ el:el.tagName.toLowerCase(),
+      el_id:(el.id||'').slice(0,60),
+      el_class:String(cls).split(/\s+/).slice(0,3).join(' ').slice(0,60),
+      label:(el.getAttribute('aria-label')||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,90),
+      section:sec?String(sec.id||String(sec.className).split(/\s+/)[0]||'').slice(0,40):'' };
+    if(el.tagName==='A'){
+      var href=el.getAttribute('href')||''; p.href=href.slice(0,90);
+      if(/^https?:/i.test(href) && el.hostname!==location.hostname)
+        track('outbound',{url:el.href.slice(0,100), text:p.label});
+    }
+    track('ui_click',p);
+  },true);
+
+  /* 5. установка приложения и язык */
+  addEventListener('appinstalled',function(){ track('pwa_install'); });
+  var lp=$('.hnav a.chip[hreflang]');
+  if(lp) lp.addEventListener('click',function(){ track('lang_switch',{to:lp.getAttribute('hreflang')}); });
 })();
 
 /* ───────── офлайн ───────── */
