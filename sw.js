@@ -1,7 +1,7 @@
-const C='xenia-7bd6c827';
+const C='xenia-fa234376';
 const CORE=['./','./en/','./manifest.webmanifest','./en/manifest.webmanifest',
- './assets/still-threshold.jpg','./assets/still-cyclops.jpg','./assets/still-scylla.jpg','./assets/still-penelope.jpg',
- './assets/still-horse.jpg','./assets/still-storm.jpg'];
+ './assets/still-threshold.jpg','./assets/still-cyclops.jpg','./assets/still-stacks.jpg',
+ './assets/still-drag.jpg','./assets/still-horse.jpg'];
 self.addEventListener('install',e=>{self.skipWaiting();
   e.waitUntil(caches.open(C).then(c=>Promise.allSettled(CORE.map(u=>c.add(u)))));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>

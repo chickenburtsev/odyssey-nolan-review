@@ -277,10 +277,16 @@ blockquote cite{display:block;margin-top:var(--s3);font-family:var(--sans);font-
 
 /* ============ ФАКЕЛ ============ */
 .torch{position:relative;overflow:hidden;border-radius:10px}
-.torch img{filter:brightness(1.85) saturate(1.06) contrast(1.02)}
+/* Пещера должна быть тёмной: раньше маска гасила края лишь до .97 при яркости кадра 1.85,
+   и циклоп читался целиком — водить факелом было незачем. Теперь за пределами пятна глухо. */
+.torch img{filter:brightness(2.2) saturate(1.08) contrast(1.04)}
 .torch .mask{position:absolute;inset:0;z-index:3;pointer-events:none;transition:opacity .6s;
-  background:radial-gradient(circle at var(--tx,50%) var(--ty,42%),
-    rgba(4,6,11,0) 0, rgba(4,6,11,0) 16%, rgba(4,6,11,.5) 34%, rgba(4,6,11,.88) 62%, rgba(4,6,11,.97) 100%)}
+  background:radial-gradient(circle 300px at var(--tx,50%) var(--ty,42%),
+    rgba(4,6,11,0) 0, rgba(4,6,11,.06) 20%, rgba(4,6,11,.55) 46%, rgba(4,6,11,.93) 74%, #04060b 100%)}
+@media(max-width:700px){
+  .torch .mask{background:radial-gradient(circle 170px at var(--tx,50%) var(--ty,42%),
+    rgba(4,6,11,0) 0, rgba(4,6,11,.06) 20%, rgba(4,6,11,.55) 46%, rgba(4,6,11,.93) 74%, #04060b 100%)}
+}
 .torch .flame{position:absolute;z-index:4;left:var(--tx,50%);top:var(--ty,42%);width:8px;height:8px;margin:-4px;
   border-radius:50%;pointer-events:none;background:radial-gradient(circle,#ffe0b0,rgba(200,112,63,.7) 45%,transparent 70%);
   box-shadow:0 0 30px 14px rgba(200,112,63,.42),0 0 90px 46px rgba(200,112,63,.16);animation:fl .19s alternate infinite}
@@ -568,7 +574,6 @@ footer .in p{max-width:74ch;margin:0}
   <div class="scroll-cue"><span>Листайте</span><i></i></div>
 </section>
 
-<p class="note rv">Писалось после сеанса на средиземноморском острове — в тех местах, где в пещерах находят черепа карликовых слонов. С одной впадиной посередине, похожей на глазницу. Дальше станет понятно, почему это важно.</p>
 
 <!-- ═══════════ АКТ I ═══════════ -->
 <section id="act1" class="act" style="padding-bottom:0">
@@ -651,25 +656,9 @@ footer .in p{max-width:74ch;margin:0}
   </div>
 </section>
 
-<section class="scene" id="sc2" data-still="assets/still-storm.jpg" style="height:170svh">
-  <div class="stage">
-    <video id="scrub2" data-src="assets/scrub-storm.mp4" muted playsinline preload="none" aria-hidden="true"></video>
-    <div class="grade"></div>
-    <div class="bars t"></div><div class="bars b"></div>
-    <div class="cap"><p data-i="0" class="on">Приговор устроен с судебной точностью: человек, осквернивший гостеприимство, обречён десять лет от него зависеть.</p></div>
-  </div>
-</section>
 
 <section class="act" style="padding-top:var(--s6)">
-  <div class="col"><p>У Гомера это объяснено через традицию «Возвращений», ностой: боги гневаются на всех ахейцев за то, что они творили при взятии Трои, и разбрасывают победителей по морю. Нолан переводит богословие в психологию — его Одиссея гонит не столько Посейдон, сколько вина, — но конструкция наказания остаётся прежней. Море раз за разом ставит героя в положение просителя у чужой двери. Тот, кто вскрыл чужой дом изнутри дара, теперь сам стучится в чужие дома и целиком зависит от того, чтут ли там закон Зевса.</p></div>
-
-  <div class="fact rv">
-    <div class="txt"><p class="lab">Между делом</p><h3 class="serif">Море было настоящим</h3><p>Значительную часть морских сцен снимали не в павильоне с синим экраном, а в открытом море и на средиземноморских островах. Нолан объяснял это просто: вода по-настоящему не слушается — и лучше всякой графики показывает, чего эти переходы стоили людям.</p></div>
-    <figure><img src="assets/still-storm.jpg" alt="" loading="lazy" decoding="async">
-      <figcaption>© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</figcaption></figure>
-  </div>
-
-  <div class="col"><p>Пройдите этот маршрут сами. Каждая остановка — экзамен: где-то его сдаёт хозяин, где-то гость.</p></div>
+  <div class="col"><p>У Гомера это объяснено через традицию «Возвращений», ностой: боги гневаются на всех ахейцев за то, что они творили при взятии Трои, и разбрасывают победителей по морю. Нолан переводит богословие в психологию — его Одиссея гонит не столько Посейдон, сколько вина, — но конструкция наказания остаётся прежней. Море раз за разом ставит героя в положение просителя у чужой двери. Тот, кто вскрыл чужой дом изнутри дара, теперь сам стучится в чужие дома и целиком зависит от того, чтут ли там закон Зевса.</p><p>Пройдите этот маршрут сами. Каждая остановка — экзамен: где-то его сдаёт хозяин, где-то гость.</p></div>
 
   <div class="map-wrap rv">
     <svg id="seamap" viewBox="0 0 1000 560" role="group" aria-label="Маршрут нарушителя">
@@ -712,9 +701,9 @@ footer .in p{max-width:74ch;margin:0}
     <div class="col" style="margin-top:var(--s4);text-align:left"><p id="nameBody" style="opacity:0;transition:opacity .9s">Хитрость с «Никто» — идеальная анонимность: ослеплённый Полифем кричит, что его убивает Никто, и соседи расходятся. Но, отплывая, Одиссей не выдерживает и называет себя. Это чистый гибрис и роковая сделка: получив имя, циклоп передаёт его отцу-Посейдону, и проклятие обретает точный адрес. Формула проклятия — это буквально сюжет всего оставшегося эпоса: пусть вернётся поздно, сломленным, один, и найдёт беду в собственном доме. Имя оказывается уязвимым местом.</p></div>
   </div>
 
-  <figure class="bleed rv" data-img="assets/still-scylla.jpg">
-    <div class="ph"></div><div class="shade"></div>
-    <figcaption><div class="inner"><span>Сцилла и Харибда</span><span class="cr">иллюстрация создана ИИ для этого материала</span></div></figcaption>
+  <figure class="fig-mid rv" style="max-width:560px">
+    <img src="assets/still-stacks.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>ужас без адреса</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></figcaption>
   </figure>
 
   <div class="col">
@@ -1241,7 +1230,11 @@ if(TOUCH){
     else $$('.pick',ep).forEach(function(b){
       b.addEventListener('click',function(){ settle(+b.dataset.c,true); });
     });
-    if(innerWidth<820) ep.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
+    // на десктопе подсказка внизу менялась молча: пользователь тыкал в точку и не видел,
+    // что справка под картой обновилась. Подводим панель к экрану на любой ширине.
+    var r=ep.getBoundingClientRect();
+    if(r.top<0 || r.bottom>innerHeight)
+      ep.scrollIntoView({behavior:RM?'auto':'smooth',block:innerWidth<820?'nearest':'end'});
   }
   // самопрорисовка маршрута
   var r=$('#route'), wrap=$('.map-wrap');
@@ -1458,44 +1451,45 @@ if(TOUCH){
   var cv=$('#grainCv'); if(!cv) return;
   var ctx=cv.getContext('2d',{alpha:false});
   var range=$('#zoomR'), val=$('#zoomV');
-  // холст был жёстко 1200×520 при любом экране: на телефоне это впятеро больше пикселей, чем видно
-  var SW=1200, SH=520, W=SW, H=SH, HALF=W/2, RATIO=1;
+  // «Истина» — ОДНА панель, а не весь холст: обе половины показывают один и тот же кадр,
+  // левая через жёсткую сетку, правая через случайные кристаллы. Раньше слева и справа
+  // были разные куски изображения, и сравнивать было нечего.
+  var TW=600, TH=520;                     // размер панели-истины
+  var W=TW*2, H=TH, HALF=TW, RATIO=1;     // размер холста; RATIO = истина/холст
   function fit(){
-    var disp=Math.round(cv.getBoundingClientRect().width)||SW;
-    var w=clamp(Math.round(disp*Math.min(devicePixelRatio||1,2)), 420, SW);
+    var disp=Math.round(cv.getBoundingClientRect().width)||TW*2;
+    var w=clamp(Math.round(disp*Math.min(devicePixelRatio||1,2)), 420, TW*2);
     w=Math.round(w/2)*2;
     if(w===W) return false;
-    W=w; H=Math.round(w*SH/SW); HALF=W/2; RATIO=SW/W;
+    W=w; H=Math.round(w*TH/(TW*2)); HALF=W/2; RATIO=TW/HALF;
     cv.width=W; cv.height=H; return true;
   }
 
-  /* «истина»: то, что на самом деле было перед объективом */
-  var src=document.createElement('canvas'); src.width=SW; src.height=SH;
+  /* что было перед объективом: кривая, диагональ, тонкая сетка линий и мелкий текст */
+  var src=document.createElement('canvas'); src.width=TW; src.height=TH;
   var s=src.getContext('2d');
   (function drawTruth(){
-    s.fillStyle='#0a0f18'; s.fillRect(0,0,SW,SH);
-    // мягкий свет сверху
-    var g=s.createLinearGradient(0,0,0,SH); g.addColorStop(0,'#2a3446'); g.addColorStop(1,'#080c14');
-    s.fillStyle=g; s.fillRect(0,0,SW,SH);
-    // диагональ — на ней видны ступеньки у сетки
-    s.save(); s.translate(SW/2,SH/2); s.rotate(-.36);
-    s.fillStyle='#e8e2d8'; s.fillRect(-SW,-14,SW*2,28); s.restore();
-    // круг — кривая, которую сетка рвёт на пикселы
-    s.beginPath(); s.arc(SW*.26,SH*.32,86,0,6.29); s.fillStyle='#c8703f'; s.fill();
+    var g=s.createLinearGradient(0,0,0,TH); g.addColorStop(0,'#2a3446'); g.addColorStop(1,'#080c14');
+    s.fillStyle=g; s.fillRect(0,0,TW,TH);
+    // диагональ — на ней у сетки видны ступеньки
+    s.save(); s.translate(TW*.5,TH*.52); s.rotate(-.38);
+    s.fillStyle='#e8e2d8'; s.fillRect(-TW,-13,TW*2,26); s.restore();
+    // круг — кривая, которую решётка рвёт на пикселы
+    s.beginPath(); s.arc(TW*.30,TH*.28,74,0,6.29); s.fillStyle='#c8703f'; s.fill();
     // сходящиеся тонкие линии — источник муара на решётке
-    for(var i=0;i<70;i++){
-      var x=SW*.62+i*7.4, w=Math.max(.6, 5.2-i*.062);
-      s.fillStyle='rgba(240,235,226,.9)'; s.fillRect(x,SH*.52,w,SH*.44);
+    for(var i=0;i<34;i++){
+      var x=TW*.60+i*6.6, w=Math.max(.6, 4.6-i*.11);
+      s.fillStyle='rgba(240,235,226,.92)'; s.fillRect(x,TH*.60,w,TH*.36);
     }
     // мелкий текст-образец
     s.fillStyle='#f0ebe2'; s.font='600 30px Manrope, sans-serif';
-    s.fillText('ΞΕΝΙΑ', SW*.06, SH*.86);
+    s.fillText('ΞΕΝΙΑ', TW*.07, TH*.90);
   })();
-  var truth=s.getImageData(0,0,SW,SH).data;
-  function at(x,y){ // координаты холста → координаты «истины»
+  var truth=s.getImageData(0,0,TW,TH).data;
+  function at(x,y){ // координаты внутри панели → координаты «истины»
     x=(x*RATIO)|0; y=(y*RATIO)|0;
-    if(x<0)x=0; if(y<0)y=0; if(x>=SW)x=SW-1; if(y>=SH)y=SH-1;
-    var i=(y*SW+x)*4; return [truth[i],truth[i+1],truth[i+2]];
+    if(x<0)x=0; if(y<0)y=0; if(x>=TW)x=TW-1; if(y>=TH)y=TH-1;
+    var i=(y*TW+x)*4; return [truth[i],truth[i+1],truth[i+2]];
   }
 
   var cell=6, seed=1;
@@ -1515,24 +1509,22 @@ if(TOUCH){
   var GRAIN_CAP=9000; // без потолка при ×1 выходило больше 50 000 дуг на кадр
   function render(){
     ctx.drawImage(grid,0,0);
-    /* ПРАВО: случайные кристаллы */
+    /* ПРАВО: тот же кадр, но случайными кристаллами */
     var area=HALF*H, n=Math.min(Math.round(area/(cell*cell)*2.6), GRAIN_CAP);
     var r=seed;
     function rnd(){ r=(r*1664525+1013904223)%4294967296; return r/4294967296; }
     ctx.globalAlpha=1;
-    // тёмная подложка = «неэкспонированная» эмульсия
-    ctx.fillStyle='#070b12'; ctx.fillRect(HALF,0,HALF,H);
-    var scale=Math.max(1, Math.sqrt(area/(cell*cell)*2.6/GRAIN_CAP)); // потолок компенсируем размером зерна
+    ctx.fillStyle='#070b12'; ctx.fillRect(HALF,0,HALF,H);   // «неэкспонированная» эмульсия
+    var scale=Math.max(1, Math.sqrt(area/(cell*cell)*2.6/GRAIN_CAP));
     for(var k=0;k<n;k++){
-      var gx=HALF+rnd()*HALF, gy=rnd()*H;
-      var c2=at(gx,gy);
+      var lx=rnd()*HALF, gy=rnd()*H;      // lx — координата внутри панели, та же система, что слева
+      var c2=at(lx,gy);
       var lum=(c2[0]*.299+c2[1]*.587+c2[2]*.114)/255;
-      if(rnd()>lum*1.06) continue;                 // плотность зёрен = яркость
-      var rad=cell*(.30+rnd()*.42)*scale;          // кристаллы разного размера
+      if(rnd()>lum*1.06) continue;        // плотность зёрен = яркость
+      var rad=cell*(.30+rnd()*.42)*scale;
       ctx.fillStyle='rgb('+c2[0]+','+c2[1]+','+c2[2]+')';
-      ctx.beginPath(); ctx.arc(gx,gy,rad,0,6.29); ctx.fill();
+      ctx.beginPath(); ctx.arc(HALF+lx,gy,rad,0,6.29); ctx.fill();
     }
-    /* линия раздела */
     ctx.fillStyle='rgba(240,235,226,.22)'; ctx.fillRect(HALF-1,0,2,H);
   }
 

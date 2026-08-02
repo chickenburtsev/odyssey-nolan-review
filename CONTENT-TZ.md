@@ -24,6 +24,24 @@ Slow continuous push-in, single unbroken take, camera locked and level: an empty
 
 ---
 
+## Замена иллюстрации Сциллы
+
+Прежний вариант забракован: гладкие вертикальные столбы читаются не как шеи чудовища, а как что-то постороннее, и кадр вызывает не тот эффект. Пока на его месте стоит фотография скал. Промт на замену — с опорой на то, что уже сработало: недосказанность сильнее анатомии, масштаб задают люди, чудовище не показывать целиком.
+
+```
+Low angle from the deck of a small wooden ship passing through a narrow strait at dusk, seen from among the rowers. High cliffs on both sides. On the left cliff face, high above the men, six long shadows fall across the rock — cast by something outside the frame that is never shown. Spray and mist. Three tiny oarsmen in the foreground for scale, looking up. Shot on IMAX 65mm film, last daylight only, deep shadows with detail, heavy film grain, Bronze Age Mediterranean authenticity, photographic realism. No creature visible, no tentacles, no CGI sheen. No text, no logos.
+```
+
+Запасной вариант — со стороны Харибды, без Сциллы вовсе:
+
+```
+A wooden ship seen from directly above, tiny against a vast slow whirlpool that fills the frame — smooth concentric rings of dark water, no foam chaos, no monster. Cliffs at the edge of frame for scale. Shot on IMAX 65mm film, flat overcast light, heavy grain, muted Aegean palette. No text, no logos.
+```
+
+Формат 21:9 или 16:9, кадрирование и грейд — на мне.
+
+---
+
 ## Что ещё нужно, по приоритету
 
 ### 1. Музыка — `assets/score.mp3`
