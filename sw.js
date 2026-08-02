@@ -1,4 +1,4 @@
-const C='xenia-fa234376';
+const C='xenia-2312823c';
 const CORE=['./','./en/','./manifest.webmanifest','./en/manifest.webmanifest',
  './assets/still-threshold.jpg','./assets/still-cyclops.jpg','./assets/still-stacks.jpg',
  './assets/still-drag.jpg','./assets/still-horse.jpg'];
