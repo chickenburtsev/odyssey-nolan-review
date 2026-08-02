@@ -152,6 +152,9 @@ header.hide{transform:translateY(-120%)}
 .bleed figcaption .cr{color:var(--paper-4)}
 .bleed.tall img{height:clamp(420px,88svh,940px)}
 .bleed.wide-cine img{height:clamp(240px,52svh,600px)}
+/* якорь кадрирования: там, где главное у нижнего или верхнего края, машинный центр срезает его */
+.bleed.anchor-b img{object-position:center bottom}
+.bleed.anchor-t img{object-position:center top}
 
 /* ============ ЦИТАТА ============ */
 blockquote{margin:var(--s6) auto;width:var(--col)}
