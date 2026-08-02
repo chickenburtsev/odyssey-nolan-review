@@ -206,7 +206,9 @@ $$('.bleed[data-img]').forEach(function(fig){
     var img=document.createElement('img'); img.src=src; img.alt=''; img.loading='lazy'; img.decoding='async';
     ph.insertBefore(img, ph.firstChild);
     fig.classList.add('has');
-    if(!RM){ var q=false;
+    // параллакс масштабирует кадр на 8% — на узком экране это ещё одна обрезка поверх той,
+    // от которой мы уходим, поэтому там его нет
+    if(!RM && innerWidth>700){ var q=false;
       function par(){ q=false; var r=fig.getBoundingClientRect(), vh=innerHeight;
         if(r.bottom<0||r.top>vh) return;
         var p=(r.top+r.height/2-vh/2)/vh;

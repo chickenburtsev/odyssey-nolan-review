@@ -91,11 +91,19 @@ header.hide{transform:translateY(-120%)}
   border:1px solid var(--line-2);border-radius:999px;padding:7px 14px;
   font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--paper-3);
   min-height:34px;display:inline-flex;align-items:center;gap:6px;transition:all .2s;
+  white-space:nowrap;   /* «Звук вкл» переносился на две строки и ломал шапку */
 }
 .chip:hover,.chip:focus-visible{color:var(--paper);border-color:var(--paper-3)}
 .chip.act-on{color:var(--accent);border-color:var(--accent)}
 /* пальцем нужно 44 px; на десктопе шапка остаётся прежней высоты */
 @media(hover:none){.chip{min-height:44px;padding:7px 16px}.brand{padding:6px 0;display:inline-block}}
+/* узкий экран: три чипа и логотип не помещались и наезжали друг на друга */
+@media(max-width:470px){
+  header{gap:7px;padding-left:12px;padding-right:12px}
+  .brand{font-size:15px}
+  .hnav{gap:7px}
+  .chip{font-size:9.5px;letter-spacing:.05em;padding:7px 10px;gap:4px}
+}
 #bar{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--bronze));z-index:61}
 
 /* ============ ГЕРОЙ ============ */
@@ -155,6 +163,23 @@ header.hide{transform:translateY(-120%)}
 /* якорь кадрирования: там, где главное у нижнего или верхнего края, машинный центр срезает его */
 .bleed.anchor-b img{object-position:center bottom}
 .bleed.anchor-t img{object-position:center top}
+/* ── Телефон. Высота задавалась в долях экрана, поэтому на узком экране широкий кадр
+   попадал в портретную рамку и от композиции оставалась треть: у «дара» пропадал и
+   всадник, и сам конь. Здесь кадр держит свою пропорцию и показывается целиком. ── */
+@media(max-width:700px){
+  .bleed img{height:auto;aspect-ratio:16/9;transform:none}
+  .bleed.wide-cine img{height:auto;aspect-ratio:2.39/1}
+  .bleed.tall img{height:auto;aspect-ratio:4/5}   /* портрет оставлен там, где сюжет в центре кадра */
+  .bleed figcaption{position:static;padding:12px 0 0}
+  .bleed figcaption .inner{justify-content:flex-start;gap:6px;flex-direction:column}
+  .bleed .shade{display:none}   /* затемнение нужно было под наложенную подпись — она ушла вниз */
+  /* видео сцены — то же самое: 16:9 в экране 390×844 срезало коню голову.
+     Кадр показывается целиком, подпись подтянута под него, чтобы чёрное поле не пустовало */
+  .scene video{object-fit:contain;object-position:center 40%}
+  .fallback-still{background-size:contain;background-repeat:no-repeat;background-position:center 40%}
+  .scene .cap{padding-bottom:calc(var(--safe-b) + 24vh)}
+  .scene .cap p{font-size:clamp(18px,5.2vw,24px)}
+}
 
 /* ============ ЦИТАТА ============ */
 blockquote{margin:var(--s6) auto;width:var(--col)}
