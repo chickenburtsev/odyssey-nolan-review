@@ -161,6 +161,9 @@ header.hide{transform:translateY(-120%)}
 .bleed figcaption .cr{color:var(--paper-4)}
 .bleed.tall img{height:clamp(420px,88svh,940px)}
 .bleed.wide-cine img{height:clamp(240px,52svh,600px)}
+/* якорь кадрирования: там, где главное у нижнего или верхнего края, машинный центр срезает его */
+.bleed.anchor-b img{object-position:center bottom}
+.bleed.anchor-t img{object-position:center top}
 
 /* ============ ЦИТАТА ============ */
 blockquote{margin:var(--s6) auto;width:var(--col)}
@@ -575,19 +578,23 @@ footer .in p{max-width:74ch;margin:0}
     <figcaption><div class="inner"><span>Дар тащат к воротам</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></div></figcaption>
   </figure>
 
-  <figure class="bleed rv" data-img="assets/still-troy.jpg">
-    <div class="ph"></div><div class="shade"></div>
-    <figcaption><div class="inner"><span>Нарушение</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></div></figcaption>
+  <div class="col"><p>В этом и поворот Нолана. Конь — не остроумная военная хитрость, а святотатство. Дар в этом мире был материальным рукопожатием между чужими людьми, единственным доказательством, что чужак не враг. Конь превратил это доказательство в ложь. И если дару больше нельзя верить, между людьми не остаётся вообще ничего.</p></div>
+
+  <figure class="fig-mid rv">
+    <img src="assets/still-troy.jpg" alt="" loading="lazy" decoding="async">
+    <figcaption><span>Крупный план там, где эпос поставил бы панораму</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></figcaption>
   </figure>
 
-  <div class="col"><p>В этом и поворот Нолана. Конь — не остроумная военная хитрость, а святотатство. Дар в этом мире был материальным рукопожатием между чужими людьми, единственным доказательством, что чужак не враг. Конь превратил это доказательство в ложь. И если дару больше нельзя верить, между людьми не остаётся вообще ничего.</p><p>Параллель с «Оппенгеймером» здесь не украшение, а конструкция. Тринити — тоже триумф ума, который в момент успеха становится точкой невозврата, и дальше герой живёт внутри последствий, а не после них. Конь — это Тринити Одиссея. Взрыв уже произошёл в первые минуты; оставшиеся два с половиной часа — расходящаяся волна, и первым она накрывает того, кто нажал на кнопку.</p></div>
+  <div class="col"><p>Параллель с «Оппенгеймером» здесь не украшение, а конструкция. Тринити — тоже триумф ума, который в момент успеха становится точкой невозврата, и дальше герой живёт внутри последствий, а не после них. Конь — это Тринити Одиссея. Взрыв уже произошёл в первые минуты; оставшиеся два с половиной часа — расходящаяся волна, и первым она накрывает того, кто нажал на кнопку.</p></div>
 
   <figure class="fig-mid rv" style="max-width:620px">
     <img src="assets/still-sack.jpg" alt="" loading="lazy" decoding="async">
     <figcaption><span>Ночь, в которую всё решилось</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></figcaption>
   </figure>
 
-  <figure class="bleed tall rv" data-img="assets/still-marble.jpg">
+  <blockquote class="rv"><p>“Что бы это ни было, я боюсь данайцев — даже дары приносящих.”</p><cite>Лаокоон о коне. Вергилий, «Энеида», песнь II</cite></blockquote>
+
+  <figure class="bleed anchor-b rv" data-img="assets/still-marble.jpg">
     <div class="ph"></div><div class="shade"></div>
     <figcaption><div class="inner"><span>Дар, который был оружием</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></div></figcaption>
   </figure>
@@ -597,19 +604,17 @@ footer .in p{max-width:74ch;margin:0}
     <figcaption><div class="inner"><span>Нарушение</span><span class="cr">© Universal Pictures / Syncopy · фрагмент трейлера, цитирование</span></div></figcaption>
   </figure>
 
-  <blockquote class="rv"><p>“Что бы это ни было, я боюсь данайцев — даже дары приносящих.”</p><cite>Лаокоон о коне. Вергилий, «Энеида», песнь II</cite></blockquote>
+  <div class="def rv">
+    <div><p class="word">ξενία</p><p class="tr">ксения</p></div>
+    <div class="body"><p>Обязанность принять чужака: вымыть, накормить, уложить, одарить и отпустить — и не спрашивать имени, пока гость не поел. Гость обязан не причинять дому вреда и однажды ответить тем же. Поручитель сделки — Зевс Ксений, покровитель странников: под лохмотьями нищего может оказаться бог. Поэтому закрыть дверь — не грубость, а святотатство.</p>
+      <ul><li>Парис нарушил ксению — началась война</li><li>Конь нарушил её снова — пала Троя</li><li>Полифем нарушает её как хозяин</li><li>Женихи нарушают её как гости</li></ul></div>
+  </div>
 
   <figure class="bleed rv" data-img="assets/still-threshold.jpg">
     <div class="ph"></div>
     <div class="shade"></div>
     <figcaption><div class="inner"><span>ксения</span><span class="cr">иллюстрация создана ИИ для этого материала</span></div></figcaption>
   </figure>
-
-  <div class="def rv">
-    <div><p class="word">ξενία</p><p class="tr">ксения</p></div>
-    <div class="body"><p>Обязанность принять чужака: вымыть, накормить, уложить, одарить и отпустить — и не спрашивать имени, пока гость не поел. Гость обязан не причинять дому вреда и однажды ответить тем же. Поручитель сделки — Зевс Ксений, покровитель странников: под лохмотьями нищего может оказаться бог. Поэтому закрыть дверь — не грубость, а святотатство.</p>
-      <ul><li>Парис нарушил ксению — началась война</li><li>Конь нарушил её снова — пала Троя</li><li>Полифем нарушает её как хозяин</li><li>Женихи нарушают её как гости</li></ul></div>
-  </div>
 </section>
 
 <!-- ═══════════ АКТ II ═══════════ -->
@@ -635,7 +640,7 @@ footer .in p{max-width:74ch;margin:0}
 
   <div class="fact rv">
     <div class="txt"><p class="lab">Между делом</p><h3 class="serif">Море было настоящим</h3><p>Значительную часть морских сцен снимали не в павильоне с синим экраном, а в открытом море и на средиземноморских островах. Нолан объяснял это просто: вода по-настоящему не слушается — и лучше всякой графики показывает, чего эти переходы стоили людям.</p></div>
-    <figure><img src="assets/still-bowship.jpg" alt="" loading="lazy" decoding="async">
+    <figure><img src="assets/still-storm.jpg" alt="" loading="lazy" decoding="async">
       <figcaption>© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</figcaption></figure>
   </div>
 
@@ -685,11 +690,6 @@ footer .in p{max-width:74ch;margin:0}
   <figure class="bleed rv" data-img="assets/still-scylla.jpg">
     <div class="ph"></div><div class="shade"></div>
     <figcaption><div class="inner"><span>Сцилла и Харибда</span><span class="cr">иллюстрация создана ИИ для этого материала</span></div></figcaption>
-  </figure>
-
-  <figure class="fig-mid rv" style="max-width:560px">
-    <img src="assets/still-stacks.jpg" alt="" loading="lazy" decoding="async">
-    <figcaption><span>ужас без адреса</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></figcaption>
   </figure>
 
   <div class="col">
@@ -790,9 +790,9 @@ footer .in p{max-width:74ch;margin:0}
   </div>
   <div class="col"><p>Конструкция замыкается симметрично. В первом акте гости въехали в город внутри дара и сожрали его изнутри. В третьем женихи — формально тоже гости — годами проедают дом Одиссея: стада, погреб, труд слуг, — а жену держат как приз. Это то же преступление, снятое с другой стороны: ксения, вывернутая уже не хозяином, как у Полифема, а гостем. Антиной у Паттинсона не злодей, он человек, искренне уверенный, что закон Зевса — для слабых. А Пенелопа и Телемах, продолжающие принимать странников в разграбляемом доме, — единственные, кто закон ещё держит.</p><p>Поэтому расправа поставлена как ритуал, а не как бойня: тесный зал, лук вместо меча, нищий, на глазах становящийся царём. Грегори Нэджи читает финал так же: избиение женихов — не столько наказание, сколько необходимое восстановление порядка. Рецензенты отмечают, что именно в финальной схватке темы фильма наконец обретают силу. Насилие здесь не освобождает: оно тяжёлое, и чистого катарсиса зрителю не выдают.</p><p>Но Гомер честнее жанра, и Нолан идёт за ним. Восстановленный закон немедленно порождает новый цикл: родня убитых берётся за оружие, кровная месть готова крутиться вечно. Эпос обрывает её вмешательством свыше — Афина по воле Зевса накладывает на остров забвение. Амнистия как единственный выход. Древний поэт знал то, что двадцатый век заново открыл на своих руинах: у возмездия нет естественной последней точки, её можно только поставить.</p></div>
 
-  <figure class="bleed tall rv" data-img="assets/still-penelope.jpg">
+  <figure class="bleed wide-cine rv" data-img="assets/still-bowship.jpg">
     <div class="ph"></div><div class="shade"></div>
-    <figcaption><div class="inner"><span>Расправа как ритуал</span><span class="cr">иллюстрация создана ИИ для этого материала</span></div></figcaption>
+    <figcaption><div class="inner"><span>Одиссей и лук</span><span class="cr">© Universal Pictures / Syncopy · промоматериал, цитирование в целях критики</span></div></figcaption>
   </figure>
 
   <figure class="bleed rv" data-vid="assets/clip-bow.mp4">
