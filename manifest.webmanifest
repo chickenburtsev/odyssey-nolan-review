@@ -1,0 +1,26 @@
+{
+ "name": "Закон Зевса — «Одиссея» Кристофера Нолана",
+ "short_name": "ΞΕΝΙΑ",
+ "lang": "ru",
+ "dir": "ltr",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#0a0f18",
+ "theme_color": "#0a0f18",
+ "description": "Ксения, древний закон гостеприимства, как ключ к «Одиссее» Нолана: почему конь — преступление, скитания — приговор, а расправа — суд.",
+ "icons": [
+  {
+   "src": "assets/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "assets/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
