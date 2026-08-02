@@ -1,0 +1,26 @@
+{
+ "name": "The Law of Zeus — Christopher Nolan's The Odyssey",
+ "short_name": "ΞΕΝΙΑ",
+ "lang": "en",
+ "dir": "ltr",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#0a0f18",
+ "theme_color": "#0a0f18",
+ "description": "Xenia, the ancient law of hospitality, as the key to Nolan's Odyssey: why the horse is a crime, the wandering a sentence, and the slaughter a trial.",
+ "icons": [
+  {
+   "src": "../assets/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "../assets/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
