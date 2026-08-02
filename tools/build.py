@@ -7,6 +7,11 @@ from content import RU, EN
 import data as DAT
 import geo as GEO
 
+# ─── счётчики ───────────────────────────────────────────────────────────
+# Пусто = аналитики нет вообще: ни скриптов, ни баннера согласия.
+GA_ID      = 'G-9BLFSZP6X2'   # Google Analytics 4, вида G-XXXXXXXXXX
+CLARITY_ID = ''          # Microsoft Clarity, вида abcdefghij
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
@@ -65,7 +70,8 @@ def payload(lang):
             'bo_budget', 'bo_gross', 'bo_live', 'qz_stmt', 'qz_next', 'qz_result', 'qz_again',
             'name_after_sub', 'tl_m1', 'tl_m2', 'tl_m3', 'tl_read',
             'map_hint_touch', 'tl_hint_touch']
-    return dict(root='' if lang == 'ru' else '../', t={k: T[k] for k in keys},
+    return dict(root='' if lang == 'ru' else '../', ga=GA_ID, clarity=CLARITY_ID,
+                t={k: T[k] for k in keys},
                 map=mp, xenia=xen, xv=DAT.XVERDICT[lang], tl=tl, tlL=tlL, tlN=tlN,
                 bo=bo, quiz=qz, qr=DAT.QZ_RESULT[lang])
 
@@ -92,6 +98,7 @@ def build(lang):
     # сборка одна на все устройства: подсказку под указатель выбирает JS во время выполнения
     T['map_hint'] = T['map_hint_desktop']
     T['manifest'] = 'manifest.webmanifest'
+    T['analytics'] = '' if not (GA_ID or CLARITY_ID) else ' data-an="1"'
     T['alt_ru'] = './' if lang == 'ru' else '../'
     T['alt_en'] = './en/' if lang == 'ru' else './'
     html = TPL
